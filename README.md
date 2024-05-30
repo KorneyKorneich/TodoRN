@@ -1,79 +1,124 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Todo List Project
 
-# Getting Started
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Contact](#contact)
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Introduction
 
-## Step 1: Start the Metro Server
+Welcome to the Todo List Project! This application is designed to help you manage your tasks efficiently. You can add, update, delete, and mark tasks as completed. It's a simple and effective way to stay organized and keep track of your to-dos.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Features
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- Add new tasks with a description and due date
+- Edit existing tasks
+- Delete tasks
+- Mark tasks as completed
+- Filter tasks by status (completed, pending)
+- Search tasks by keywords
 
-```bash
-# using npm
-npm start
+## Installation
 
-# OR using Yarn
-yarn start
-```
+To run this project locally, follow these steps:
 
-## Step 2: Start your Application
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/KorneyKorneich/TodoRN.git
+    cd todo-list
+    ```
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+2. **Install dependencies**:
+    ```bash
+    npm install
+    ```
+   or if you're using yarn:
+    ```bash
+    yarn install
+    ```
 
-### For Android
+3. **Install React Native CLI** (if not already installed):
+    ```bash
+    npm install -g react-native-cli
+    ```
 
-```bash
-# using npm
-npm run android
+4. **Link native dependencies** (for older versions of React Native):
+    ```bash
+    react-native link
+    ```
 
-# OR using Yarn
-yarn android
-```
+5. **Start the Metro Bundler**:
+    ```bash
+    npx react-native start
+    ```
 
-### For iOS
+6. **Run the application**:
+   - For Android:
+     ```bash
+     npx react-native run-android
+     ```
+   - For iOS:
+     ```bash
+     npx react-native run-ios
+     ```
 
-```bash
-# using npm
-npm run ios
+## Usage
 
-# OR using Yarn
-yarn ios
-```
+After starting the Metro Bundler and running the application on an emulator or physical device, you can start managing your tasks.
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### Adding a Task
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+1. Tap on the "Add Task" button.
+2. Fill in the task details (description, due date, etc.).
+3. Tap "Save" to add the task to your list.
 
-## Step 3: Modifying your App
+### Editing a Task
 
-Now that you have successfully run the app, let's modify it.
+1. Tap on the task you want to edit.
+2. Modify the task details as needed.
+3. Tap "Update" to save your changes.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+### Deleting a Task
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+1. Swipe left on the task you want to remove.
+2. Confirm the deletion if prompted.
 
-## Congratulations! :tada:
+### Marking a Task as Completed
 
-You've successfully run and modified your React Native App. :partying_face:
+1. Tap on the checkbox next to the task you want to mark as completed.
+2. The task will be crossed out and moved to the completed section.
 
-### Now what?
+### Filtering and Searching Tasks
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+- Use the filter options to view only completed or pending tasks.
+- Use the search bar to find tasks by keywords.
 
-# Troubleshooting
+## Contributing
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+We welcome contributions to improve this project! To contribute, please follow these steps:
 
-# Learn More
+1. **Fork the repository** on GitHub.
+2. **Clone your fork**:
+    ```bash
+    git clone https://github.com/KorneyKorneich/TodoRN.git
+    ```
+3. **Create a new branch** for your feature or bugfix:
+    ```bash
+    git checkout -b feature-name
+    ```
+4. **Make your changes** and commit them with clear and concise messages.
+5. **Push your changes** to your fork:
+    ```bash
+    git push origin feature-name
+    ```
+6. **Create a pull request** on the original repository.
 
-To learn more about React Native, take a look at the following resources:
+## Contact
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+If you have any questions, suggestions, or issues, please feel free to contact me at:
+
+- **Email**: nikitakorneev066@gmail.com
+- **GitHub**: [KorneyKorneich](https://github.com/KorneyKorneich)
