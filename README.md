@@ -1,6 +1,7 @@
 # Todo List Project
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
@@ -26,34 +27,41 @@ Welcome to the Todo List Project! This application is designed to help you manag
 To run this project locally, follow these steps:
 
 1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/KorneyKorneich/TodoRN.git
-    cd todo-list
-    ```
+
+   ```bash
+   git clone https://github.com/KorneyKorneich/TodoRN.git
+   cd todo-list
+   ```
 
 2. **Install dependencies**:
-    ```bash
-    npm install
-    ```
+
+   ```bash
+   npm install
+   ```
+
    or if you're using yarn:
-    ```bash
-    yarn install
-    ```
+
+   ```bash
+   yarn install
+   ```
 
 3. **Install React Native CLI** (if not already installed):
-    ```bash
-    npm install -g react-native-cli
-    ```
+
+   ```bash
+   npm install -g react-native-cli
+   ```
 
 4. **Link native dependencies** (for older versions of React Native):
-    ```bash
-    react-native link
-    ```
+
+   ```bash
+   react-native link
+   ```
 
 5. **Start the Metro Bundler**:
-    ```bash
-    npx react-native start
-    ```
+
+   ```bash
+   npx react-native start
+   ```
 
 6. **Run the application**:
    - For Android:
@@ -102,18 +110,18 @@ We welcome contributions to improve this project! To contribute, please follow t
 
 1. **Fork the repository** on GitHub.
 2. **Clone your fork**:
-    ```bash
-    git clone https://github.com/KorneyKorneich/TodoRN.git
-    ```
+   ```bash
+   git clone https://github.com/KorneyKorneich/TodoRN.git
+   ```
 3. **Create a new branch** for your feature or bugfix:
-    ```bash
-    git checkout -b feature-name
-    ```
+   ```bash
+   git checkout -b feature-name
+   ```
 4. **Make your changes** and commit them with clear and concise messages.
 5. **Push your changes** to your fork:
-    ```bash
-    git push origin feature-name
-    ```
+   ```bash
+   git push origin feature-name
+   ```
 6. **Create a pull request** on the original repository.
 
 ## Contact
