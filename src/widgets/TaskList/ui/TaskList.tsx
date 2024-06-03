@@ -1,6 +1,5 @@
-import { Button, FlatList, SafeAreaView, TextInput, View } from "react-native";
-import { TaskConfig } from "../../../entities/Task/config/task.config.ts";
-import { useEffect, useState } from "react";
+import { Button, FlatList, TextInput, View } from "react-native";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getState } from "../slice/selectors/getState.ts";
 import styles from "./TaskList.styles.ts";
