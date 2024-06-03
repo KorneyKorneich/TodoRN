@@ -16,7 +16,10 @@ export const TaskList = () => {
     const dispatch = useAppDispatch();
 
     const handleAddTask = () => {
-        taskToAdd === "" ? setTaskToAdd("") : dispatch(addTask(taskToAdd));
+        if (taskToAdd.trim() !== "") {
+            dispatch(addTask(taskToAdd));
+            setTaskToAdd(""); // Clear the input after adding the task
+        }
     };
 
     return (
@@ -27,7 +30,7 @@ export const TaskList = () => {
                 value={taskToAdd}
                 onChangeText={(text) => setTaskToAdd(text)}
             />
-            <Button title={"+"} onPress={() => handleAddTask()} />
+            <Button title={"+"} onPress={handleAddTask} />
         </View>
     );
 };

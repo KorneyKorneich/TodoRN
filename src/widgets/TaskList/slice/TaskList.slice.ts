@@ -16,12 +16,12 @@ export const counterSlice = createSlice({
     initialState,
     reducers: {
         addTask: (state, action) => {
-            if (typeof action.payload !== "string") {
+            if (typeof action.payload === "string") {
                 const newTask = {
                     id: Date.now().toString(),
                     title: action.payload,
                 };
-                state.tasks.push(newTask);
+                state.tasks = [...state.tasks, newTask];
             }
         },
     },
