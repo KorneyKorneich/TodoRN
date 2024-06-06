@@ -1,7 +1,7 @@
-import { TaskConfig } from "src/entities/Task/config/task.config.ts";
+import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 
 export interface TasksStoreConfig {
-    tasks: TaskConfig[];
+    tasks: TaskConfigWithId[];
     isLoading: boolean;
     isError: boolean;
 }

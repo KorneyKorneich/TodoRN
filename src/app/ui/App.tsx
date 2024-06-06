@@ -1,25 +1,16 @@
 import React from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
-
-import {
-    Colors,
-    DebugInstructions,
-    Header,
-    LearnMoreLinks,
-    ReloadInstructions,
-} from "react-native/Libraries/NewAppScreen";
+import { SafeAreaView } from "react-native";
 import { TaskList } from "../../widgets/TaskList/ui/TaskList.tsx";
-import { Provider } from "react-redux";
-import { store } from "../store/store.ts";
 import style from "./App.styles.ts";
+import { ReduxProvider } from "../providers/ReduxProvider.tsx";
 
 function App(): React.JSX.Element {
     return (
-        <Provider store={store}>
+        <ReduxProvider>
             <SafeAreaView style={style.app}>
                 <TaskList />
             </SafeAreaView>
-        </Provider>
+        </ReduxProvider>
     );
 }
 
