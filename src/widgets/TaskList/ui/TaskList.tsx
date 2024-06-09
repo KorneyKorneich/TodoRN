@@ -8,9 +8,11 @@ import { addTaskToDB } from "src/shared/firebase/cloud/api/addTask/addTask.ts";
 import { TaskConfig } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
 import { getTasksList } from "src/shared/firebase/cloud/api/getTaskList/getTasksList.ts";
+import { TaskAddButton } from "src/shared/ui/Buttons/TaskAddButton/TaskAddButton.tsx";
 
 export const TaskList = () => {
     const tasks = useSelector(getState).tasks.tasks;
+    const reversedTasksList = [...tasks].reverse();
 
     const taskToAddInitialState: TaskConfig = {
         description: "",
@@ -32,13 +34,13 @@ export const TaskList = () => {
 
     return (
         <View style={styles.taskListContainer}>
-            <FlatList data={tasks} renderItem={({ item }) => <Task task={item} />} />
+            <FlatList data={reversedTasksList} renderItem={({ item }) => <Task task={item} />} />
             <TextInput
                 placeholder={"New todo here"}
                 value={taskToAdd.title}
                 onChangeText={(text) => setTaskToAdd({ ...taskToAdd, title: text })}
             />
-            <Button title={"+"} onPress={handleAddTask} />
+            <TaskAddButton title={"+"} onPress={handleAddTask} />
         </View>
     );
 };

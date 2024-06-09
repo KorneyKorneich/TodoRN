@@ -25,7 +25,7 @@ export const Task = (props: TaskProps) => {
                 value={toggleCheckBox}
             />
             <Text style={styles.text}>{task.data.title}</Text>
-            <Button title={"Del"} onPress={handleDelete} />
+            {/*<Button title={"Del"} onPress={handleDelete} />*/}
         </View>
     );
 };

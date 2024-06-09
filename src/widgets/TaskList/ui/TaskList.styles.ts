@@ -6,4 +6,5 @@ export default StyleSheet.create({
         marginHorizontal: "5%",
         backgroundColor: "#EEEEEE",
     },
+    taskAddButton: {},
 });
