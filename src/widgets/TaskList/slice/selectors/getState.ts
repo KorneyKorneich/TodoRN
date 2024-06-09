@@ -1,5 +1,4 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { StoreConfig } from "../../../../app/store/config/StateConfig.config.ts";
+import { StoreConfig } from "src/shared/store/config/StateConfig.config.ts";
 //куда мне сувать конфиги??
 
 export const getState = (state: StoreConfig) => state;
