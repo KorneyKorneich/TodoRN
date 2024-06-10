@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
 
-export class ReduxProviderProps {
+export interface ReduxProviderProps {
     children: ReactNode;
 }

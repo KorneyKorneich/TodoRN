@@ -13,13 +13,17 @@ export const TaskList = () => {
     const tasks = useSelector(getState).tasks.tasks;
 
     const taskToAddInitialState: TaskConfig = {
-        description: "",
-        title: "",
+        description: null,
+        title: null,
     };
 
     const [taskToAdd, setTaskToAdd] = useState<TaskConfig>(taskToAddInitialState);
 
     const dispatch = useAppDispatch();
+
+    const handleOnChange = (text: string) => {
+        setTaskToAdd({ ...taskToAdd, title: text });
+    };
 
     const handleAddTask = () => {
         dispatch(addTaskToDB(taskToAdd));
@@ -36,7 +40,7 @@ export const TaskList = () => {
             <TextInput
                 placeholder={"New todo here"}
                 value={taskToAdd.title}
-                onChangeText={(text) => setTaskToAdd({ ...taskToAdd, title: text })}
+                onChangeText={handleOnChange}
             />
             <Button title={"+"} onPress={handleAddTask} />
         </View>
