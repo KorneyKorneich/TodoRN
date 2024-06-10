@@ -6,7 +6,7 @@ export const addTaskToDB = createAsyncThunk<TaskConfigWithId, TaskConfig>(
     "tasks/addTaskToDB",
     async (task: TaskConfig) => {
         // Check if the title property is a string
-        if (task.title.trim() !== "") {
+        if (task.title && task.title.trim() !== "") {
             const docRef = await addDoc(collection(db, "Tasks"), task);
             console.log("id:", docRef.id);
             return { id: docRef.id, data: task };

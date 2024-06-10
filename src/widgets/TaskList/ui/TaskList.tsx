@@ -1,4 +1,4 @@
-import { Button, FlatList, TextInput, View } from "react-native";
+import { FlatList, TextInput, View } from "react-native";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getState } from "../slice/selectors/getState.ts";
@@ -15,14 +15,17 @@ export const TaskList = () => {
     const reversedTasksList = [...tasks].reverse();
 
     const taskToAddInitialState: TaskConfig = {
-        description: "",
-        title: "",
+        description: null,
+        title: null,
     };
 
     const [taskToAdd, setTaskToAdd] = useState<TaskConfig>(taskToAddInitialState);
 
     const dispatch = useAppDispatch();
 
+    const handleOnChange = (text: string): void => {
+        setTaskToAdd({ ...taskToAdd, title: text });
+    };
     const handleAddTask = () => {
         dispatch(addTaskToDB(taskToAdd));
         setTaskToAdd(taskToAddInitialState);
@@ -38,9 +41,9 @@ export const TaskList = () => {
             <TextInput
                 placeholder={"New todo here"}
                 value={taskToAdd.title}
-                onChangeText={(text) => setTaskToAdd({ ...taskToAdd, title: text })}
+                onChangeText={handleOnChange}
             />
-            <TaskAddButton title={"+"} onPress={handleAddTask} />
+            <TaskAddButton style={styles.taskAddButton} title={"+"} onPress={handleAddTask} />
         </View>
     );
 };
