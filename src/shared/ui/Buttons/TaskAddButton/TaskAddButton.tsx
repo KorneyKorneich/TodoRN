@@ -6,9 +6,9 @@ import TaskAddIcon from "src/shared/assets/icons/plus-ico.svg";
 export const TaskAddButton = ({ onPress }: TaskAddButtonProps) => {
     return (
         <>
-            {/*<TaskAddIcon />*/}
-            <TouchableOpacity style={styles.button} onPress={onPress}></TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={onPress}>
+                <TaskAddIcon width={40} height={40} />
+            </TouchableOpacity>
         </>
     );
-    //How to use a svg?
 };
