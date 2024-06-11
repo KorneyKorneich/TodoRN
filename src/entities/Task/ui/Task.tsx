@@ -5,18 +5,31 @@ import CheckBox from "@react-native-community/checkbox";
 import styles from "./Task.styles.ts";
 import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
 import { deleteTask } from "src/shared/firebase/cloud/api/deleteTask/deleteTask.ts";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useAppNavigation } from "src/shared/types/navigationTypes/navigationTypes.ts";
 
-export const Task = (props: TaskProps) => {
+type TaskComponentProps = {
+    task: TaskProps["task"];
+};
+
+export const Task = (props: TaskComponentProps) => {
     const { task } = props;
-
     const dispatch = useAppDispatch();
+
+    const navigation = useAppNavigation();
 
     const [toggleCheckBox, setToggleCheckBox] = useState(false);
     const [isDisabled, setDisabled] = useState(false);
 
+    const handleOnPress = () => {
+        navigation.navigate("TaskEdit");
+    };
+
     const handleDelete = () => {
         dispatch(deleteTask(task.id));
     };
+
     return (
         <View key={task.id} style={styles.task}>
             <CheckBox
@@ -24,8 +37,10 @@ export const Task = (props: TaskProps) => {
                 onValueChange={() => setToggleCheckBox(!toggleCheckBox)}
                 value={toggleCheckBox}
             />
-            <Text style={styles.text}>{task.data.title}</Text>
-            {/*<Button title={"Del"} onPress={handleDelete} />*/}
+            <Text onPress={handleOnPress} style={styles.text}>
+                {task.data.title}
+            </Text>
+            <Button title={"Del"} onPress={handleDelete} />
         </View>
     );
 };
