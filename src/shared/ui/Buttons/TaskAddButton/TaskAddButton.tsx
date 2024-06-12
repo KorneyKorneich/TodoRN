@@ -1,14 +1,13 @@
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import styles from "./TaskAddButton.styles.ts";
-import { TaskAddButtonProps } from "src/shared/ui/Buttons/TaskAddButton/TaskAddButton.config.ts";
-import TaskAddIcon from "src/shared/assets/icons/plus-ico.svg";
+import TaskAddIcon from "src/shared/assets/icons/plus-circle.svg";
 
-export const TaskAddButton = ({ onPress, style }: TaskAddButtonProps) => {
+export const TaskAddButton = ({ onPress }: TouchableOpacityProps) => {
     return (
         <>
-            <View style={style}>
-                <TouchableOpacity style={styles.button} onPress={onPress}>
-                    <TaskAddIcon width={40} height={40} />
+            <View style={styles.taskAddButtonContainer}>
+                <TouchableOpacity onPress={onPress}>
+                    <TaskAddIcon width={72} height={72} />
                 </TouchableOpacity>
             </View>
         </>

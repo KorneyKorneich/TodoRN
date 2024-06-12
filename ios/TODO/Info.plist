@@ -49,8 +49,7 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Open-Sans.ttf</string>
-		<string>Playfair-Display.ttf</string>
+		<string>BebasNeueRegular.otf</string>
 	</array>
 </dict>
 </plist>

@@ -1,12 +1,10 @@
-import { Button, Text, View } from "react-native";
+import { Button, Text, TouchableOpacity, View } from "react-native";
 import { TaskProps } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { useState } from "react";
 import CheckBox from "@react-native-community/checkbox";
 import styles from "./Task.styles.ts";
 import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
 import { deleteTask } from "src/shared/firebase/cloud/api/deleteTask/deleteTask.ts";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useAppNavigation } from "src/shared/types/navigationTypes/navigationTypes.ts";
 
 type TaskComponentProps = {
@@ -20,10 +18,12 @@ export const Task = (props: TaskComponentProps) => {
     const navigation = useAppNavigation();
 
     const [toggleCheckBox, setToggleCheckBox] = useState(false);
-    const [isDisabled, setDisabled] = useState(false);
+    // const [isDisabled, setDisabled] = useState(false);
 
     const handleOnPress = () => {
-        navigation.navigate("TaskEdit");
+        navigation.navigate("TaskEdit", {
+            taskData: task,
+        });
     };
 
     const handleDelete = () => {
@@ -31,16 +31,14 @@ export const Task = (props: TaskComponentProps) => {
     };
 
     return (
-        <View key={task.id} style={styles.task}>
-            <CheckBox
-                disabled={isDisabled}
-                onValueChange={() => setToggleCheckBox(!toggleCheckBox)}
-                value={toggleCheckBox}
-            />
-            <Text onPress={handleOnPress} style={styles.text}>
-                {task.data.title}
-            </Text>
-            <Button title={"Del"} onPress={handleDelete} />
-        </View>
+        <TouchableOpacity onPress={handleOnPress} key={task.id} style={styles.task}>
+            {/*<CheckBox*/}
+            {/*    disabled={isDisabled}*/}
+            {/*    onValueChange={() => setToggleCheckBox(!toggleCheckBox)}*/}
+            {/*    value={toggleCheckBox}*/}
+            {/*/>*/}
+            <Text style={styles.taskTitle}>{task.data.title}</Text>
+            <Text style={styles.taskDescription}>{task.data.description}</Text>
+        </TouchableOpacity>
     );
 };

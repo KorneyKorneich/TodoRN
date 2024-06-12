@@ -1,5 +1,4 @@
 import { DocumentData } from "firebase/firestore";
-import { NavigationProps } from "src/shared/types/navigationTypes/navigationTypes.ts";
 
 export interface TaskConfig {
     title: string | null;

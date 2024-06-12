@@ -1,12 +1,13 @@
 import { StyleSheet } from "react-native";
+import { HeadlineSizes } from "src/shared/types/styles/styleConstants.ts";
 
 export default StyleSheet.create({
     title: {
-        fontSize: 35,
+        fontSize: HeadlineSizes.HEADLINE_4,
         paddingHorizontal: 20,
-        paddingTop: 40,
+        paddingTop: 10,
         paddingBottom: 20,
-        color: "#000",
         fontWeight: "bold",
+        fontFamily: "BebasNeueRegular",
     },
 });
