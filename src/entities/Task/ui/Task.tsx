@@ -1,4 +1,4 @@
-import { Button, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { TaskProps } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { useState } from "react";
 import CheckBox from "@react-native-community/checkbox";

@@ -14,11 +14,7 @@ const initialState: TasksStoreConfig = {
 export const counterSlice = createSlice({
     name: "tasks",
     initialState,
-    reducers: {
-        // deleteTask: (state, action) => {
-        //     state.tasks = state.tasks.filter((task) => task.id !== action.payload);
-        // },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(addTaskToDB.pending, (state) => {
@@ -69,9 +65,5 @@ export const counterSlice = createSlice({
             });
     },
 });
-
-// Action creators are generated for each case reducer function
-// export const {
-// } = counterSlice.actions;
 
 export default counterSlice.reducer;
