@@ -50,11 +50,11 @@ export const Home = () => {
 
     const handleAdd = () => {
         handleTodoAdd(taskToAdd, setTaskToAdd, dispatch);
-        setIsModalOpen(false);
+        toggleModal();
     };
 
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
     };
 
     return (
@@ -65,9 +65,10 @@ export const Home = () => {
                 screen={Screens.HOME}
             />
             <TaskList />
-            <TaskAddButton onPress={handleOpenModal} />
+            <TaskAddButton onPress={toggleModal} />
             {isModalOpen && (
                 <CustomModal
+                    toggleModal={toggleModal}
                     handleOnPressButton={handleAdd}
                     content={<TodoAddWidget taskToAdd={taskToAdd} setTaskToAdd={setTaskToAdd} />}
                     buttonTitle={"add todo"}

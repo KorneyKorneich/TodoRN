@@ -20,6 +20,7 @@ export enum ColorGuide {
     BLACK = "#272727",
     GREY = "#F0F0F0",
     WHITE = "#FFFFFF",
+    BACKDROP_COLOR = "rgba(0, 0, 0, 0.3)",
 }
 
 export const OVERDRAG = 20;

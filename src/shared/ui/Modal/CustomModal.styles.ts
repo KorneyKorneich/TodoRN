@@ -9,7 +9,7 @@ export default StyleSheet.create({
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         backgroundColor: ColorGuide.PRIMARY_COLOR,
-        zIndex: 1000,
+        zIndex: 1,
         bottom: -OVERDRAG * 1.1,
     },
     rectContainer: {
@@ -25,5 +25,10 @@ export default StyleSheet.create({
     content: {
         paddingTop: 10,
         height: "84%",
+    },
+    backdrop: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: ColorGuide.BACKDROP_COLOR,
+        zIndex: 1,
     },
 });
