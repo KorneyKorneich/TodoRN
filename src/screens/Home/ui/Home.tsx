@@ -40,6 +40,9 @@ import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
 const taskToAddInitialState: TaskConfig = {
     description: null,
     title: null,
+    img: null,
+    deadline: null,
+    timeStamp: null,
 };
 
 export const Home = () => {
@@ -49,7 +52,9 @@ export const Home = () => {
     const dispatch = useAppDispatch();
 
     const handleAdd = () => {
-        handleTodoAdd(taskToAdd, setTaskToAdd, dispatch);
+        const updatedTask = { ...taskToAdd, timeStamp: Date.now().toString() };
+        setTaskToAdd(updatedTask);
+        handleTodoAdd(updatedTask, setTaskToAdd, dispatch);
         toggleModal();
     };
 

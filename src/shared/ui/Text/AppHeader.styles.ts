@@ -14,6 +14,7 @@ export default StyleSheet.create({
         fontSize: HeadlineSizes.HEADLINE_4,
         fontWeight: "bold",
         color: ColorGuide.PRIMARY_COLOR,
+        fontFamily: "Bebas Neue Regular",
     },
     navBar: {
         gap: 5,

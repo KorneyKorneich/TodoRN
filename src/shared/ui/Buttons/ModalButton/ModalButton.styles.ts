@@ -3,7 +3,7 @@ import { BodyFontSizes, ColorGuide } from "src/shared/types/styles/styleConstant
 
 export default StyleSheet.create({
     button: {
-        width: "80%",
+        width: "90%",
         backgroundColor: ColorGuide.WHITE,
         borderRadius: 12,
         paddingVertical: "4%",

@@ -1,4 +1,3 @@
-import styles from "./CustomModal.styles.ts";
 import React from "react";
 import { Pressable, View } from "react-native";
 import Animated, {
@@ -15,6 +14,7 @@ import Animated, {
 import { ModalButton } from "src/shared/ui/Buttons/ModalButton/ModalButton.tsx";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { HEIGHT, OVERDRAG } from "src/shared/types/styles/styleConstants.ts";
+import styles from "./CustomModal.styles.ts";
 
 interface CustomModalProps {
     content: React.ReactNode;

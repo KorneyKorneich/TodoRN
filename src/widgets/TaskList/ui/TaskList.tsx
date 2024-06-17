@@ -1,7 +1,7 @@
 import { FlatList, View } from "react-native";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getState } from "../slice/selectors/getState.ts";
+import { getState } from "src/shared/slices/TodoSlice/selectors/getState.ts";
 import styles from "./TaskList.styles.ts";
 import { Task } from "src/entities/Task";
 import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";

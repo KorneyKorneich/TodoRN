@@ -7,5 +7,6 @@ export default StyleSheet.create({
         marginHorizontal: "5%",
         fontWeight: "bold",
         color: ColorGuide.ACCENT_COLOR,
+        fontFamily: "Bebas Neue Regular",
     },
 });

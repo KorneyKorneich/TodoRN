@@ -6,6 +6,7 @@ export default StyleSheet.create({
         position: "absolute",
         width: "100%",
         height: HEIGHT * 0.9,
+
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         backgroundColor: ColorGuide.PRIMARY_COLOR,

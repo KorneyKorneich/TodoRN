@@ -1,3 +1,3 @@
-import tasksReducer from "./slice/TaskList.slice.ts";
+import tasksReducer from "src/shared/slices/TodoSlice/TaskList.slice.ts";
 
 export { tasksReducer };

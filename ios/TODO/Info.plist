@@ -49,7 +49,10 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>BebasNeueRegular.otf</string>
+		<string>Bebas Neue Regular.ttf</string>
+		<string>Montserrat.ttf</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string/>
 </dict>
 </plist>
