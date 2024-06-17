@@ -3,11 +3,11 @@ import { useState } from "react";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { TextInput, TouchableOpacity, View } from "react-native";
 import { ColorGuide } from "src/shared/types/styles/styleConstants.ts";
-import CalendarIcon from "src/shared/assets/icons/Calendar.tsx";
+import CalendarIcon from "src/shared/ui/Buttons/CalendarButton/Calendar.tsx";
 import { formatDate } from "src/shared/helpers/formatDate.ts";
 
 interface DateInputProps {
-    onDateChange: (date: string) => void;
+    onDateChange: (date: number) => void;
 }
 
 export const DateInput = (props: DateInputProps) => {
@@ -22,8 +22,9 @@ export const DateInput = (props: DateInputProps) => {
 
     const handleConfirm = (date: Date) => {
         const validData = formatDate(date);
+        // console.log(date.valueOf());
         setDateValue(validData);
-        onDateChange(date.toISOString());
+        onDateChange(date.valueOf());
         toggleDatePicker();
     };
 

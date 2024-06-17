@@ -3,9 +3,9 @@ import { DocumentData } from "firebase/firestore";
 export interface TaskConfig {
     title: string | null;
     description: string | null;
-    deadline: string | null;
+    deadline: number | null;
     img: string | null;
-    timeStamp: string | null;
+    timeStamp: number;
 }
 export interface TaskConfigWithId {
     id: string;

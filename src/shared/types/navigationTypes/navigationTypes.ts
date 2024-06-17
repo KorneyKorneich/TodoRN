@@ -4,7 +4,7 @@ import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts
 
 export type RootStackParamList = {
     Home: undefined;
-    TaskEdit: { taskData?: TaskConfigWithId };
+    TaskDetails: { taskData?: TaskConfigWithId };
 };
 
 export type NavigationProps = NativeStackScreenProps<RootStackParamList>;

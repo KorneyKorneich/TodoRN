@@ -42,7 +42,7 @@ const taskToAddInitialState: TaskConfig = {
     title: null,
     img: null,
     deadline: null,
-    timeStamp: null,
+    timeStamp: 0,
 };
 
 export const Home = () => {
@@ -52,7 +52,7 @@ export const Home = () => {
     const dispatch = useAppDispatch();
 
     const handleAdd = () => {
-        const updatedTask = { ...taskToAdd, timeStamp: Date.now().toString() };
+        const updatedTask = { ...taskToAdd, timeStamp: Date.now() };
         setTaskToAdd(updatedTask);
         handleTodoAdd(updatedTask, setTaskToAdd, dispatch);
         toggleModal();

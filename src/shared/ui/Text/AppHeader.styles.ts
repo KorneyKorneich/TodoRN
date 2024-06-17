@@ -17,6 +17,7 @@ export default StyleSheet.create({
         fontFamily: "Bebas Neue Regular",
     },
     navBar: {
-        gap: 5,
+        flexDirection: "row",
+        gap: 10,
     },
 });

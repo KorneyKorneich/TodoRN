@@ -1,15 +1,17 @@
-import { Text } from "react-native";
+import { StyleProp, Text, TextStyle } from "react-native";
 import styles from "./ArticleTite.styles.ts";
+import { ReactNode } from "react";
 
 export interface ArticleBarProps {
     text: string;
-    buttons?: React.ReactNode[];
+    buttons?: ReactNode[];
+    style?: StyleProp<TextStyle>;
 }
 
-export const ArticleBar = ({ text, buttons }: ArticleBarProps) => {
+export const ArticleBar = ({ style, text, buttons }: ArticleBarProps) => {
     return (
         <>
-            <Text style={styles.articleTitle}>{text}</Text>
+            <Text style={[styles.articleTitle, style]}>{text}</Text>
         </>
     );
 };

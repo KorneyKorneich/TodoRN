@@ -18,7 +18,7 @@ export const NavigationProvider = () => {
                     }}
                 />
                 <Stack.Screen
-                    name="TaskEdit"
+                    name="TaskDetails"
                     component={TaskDetails}
                     options={{
                         headerShown: false,

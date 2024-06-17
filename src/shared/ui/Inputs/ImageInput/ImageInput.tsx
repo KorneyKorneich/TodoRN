@@ -19,6 +19,7 @@ export const ImageInput: React.FC<ImageInputProps> = ({ onImageChange }) => {
         const options: ImageLibraryOptions = {
             mediaType: "photo",
             includeBase64: false,
+            quality: 0.5,
         };
         launchImageLibrary(options, (response) => {
             if (response.assets) {

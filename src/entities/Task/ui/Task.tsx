@@ -1,10 +1,8 @@
 import { Text, TouchableOpacity } from "react-native";
 import { TaskProps } from "src/shared/types/taskTypes/taskConfigWithId.ts";
-import { useState } from "react";
 import styles from "./Task.styles.ts";
-import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
-import { deleteTask } from "src/shared/firebase/cloud/api/deleteTask/deleteTask.ts";
 import { useAppNavigation } from "src/shared/types/navigationTypes/navigationTypes.ts";
+import { formatDate } from "src/shared/helpers/formatDate.ts";
 
 type TaskComponentProps = {
     task: TaskProps["task"];
@@ -21,19 +19,17 @@ export const Task = (props: TaskComponentProps) => {
     // const [isDisabled, setDisabled] = useState(false);
 
     const handleOnPress = () => {
-        navigation.navigate("TaskEdit", {
+        navigation.navigate("TaskDetails", {
             taskData: task,
         });
     };
-
-    // const handleDelete = () => {
-    //     dispatch(deleteTask(task.id));
-    // };
+    const deadline = task.data.deadline ? formatDate(new Date(task.data.deadline)) : null;
 
     return (
         <TouchableOpacity onPress={handleOnPress} key={task.id} style={styles.task}>
             <Text style={styles.taskTitle}>{task.data.title}</Text>
             <Text style={styles.taskDescription}>{task.data.description}</Text>
+            <Text style={styles.taskDeadline}>{deadline}</Text>
         </TouchableOpacity>
     );
 };

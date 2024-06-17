@@ -11,7 +11,7 @@ export default StyleSheet.create({
         marginHorizontal: "5%",
         backgroundColor: ColorGuide.PRIMARY_COLOR,
         marginBottom: 10,
-        flexDirection: "row",
+        flexDirection: "column",
     },
     taskTitle: {
         fontWeight: "bold",
@@ -19,5 +19,16 @@ export default StyleSheet.create({
         fontFamily: "Montserrat",
         color: ColorGuide.WHITE,
     },
-    taskDescription: {},
+    taskDescription: {
+        marginTop: "1%",
+        fontFamily: "Montserrat",
+        fontSize: BodyFontSizes.BODY_2,
+        color: ColorGuide.WHITE,
+        height: "60%",
+    },
+    taskDeadline: {
+        fontFamily: "Montserrat",
+        fontSize: BodyFontSizes.BODY_2,
+        color: ColorGuide.WHITE,
+    },
 });

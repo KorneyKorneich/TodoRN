@@ -2,11 +2,11 @@ import { Text, View } from "react-native";
 import styles from "./AppHeader.styles.ts";
 import { Screens, useAppNavigation } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import ChevronLeft from "src/shared/assets/icons/chevron-left.svg";
-import { useCallback } from "react";
+import { ReactNode, useCallback } from "react";
 
 interface HeaderProps {
-    text: string;
-    buttons: React.ReactNode[];
+    text?: string;
+    buttons: ReactNode[];
     screen: Screens;
 }
 
