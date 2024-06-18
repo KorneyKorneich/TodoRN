@@ -7,7 +7,6 @@ import { formatDate } from "src/shared/helpers/formatDate.ts";
 type TaskComponentProps = {
     task: TaskProps["task"];
 };
-//Todo: add task delete functional in taskPage
 
 export const Task = (props: TaskComponentProps) => {
     const { task } = props;

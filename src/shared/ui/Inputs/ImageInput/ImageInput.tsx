@@ -8,7 +8,7 @@ import { ModalButton } from "src/shared/ui/Buttons/ModalButton/ModalButton.tsx";
 
 interface ImageInputProps {
     onImageChange: (image: string) => void;
-    taskImg: string | null;
+    taskImg?: string;
 }
 
 export const ImageInput = ({ onImageChange, taskImg }: ImageInputProps) => {

@@ -40,8 +40,14 @@ export const TodoEditWidget = (props: TodoEditWidget) => {
                 value={taskToEdit.data.description}
                 onChange={handleOnDescriptionChange}
             />
-            <DateInput onDateChange={handleOnDateChange} taskDate={taskToEdit.data.deadline} />
-            <ImageInput onImageChange={handleOnImageChange} taskImg={taskToEdit.data.img} />
+            <DateInput
+                onDateChange={handleOnDateChange}
+                taskDate={taskToEdit.data.deadline ?? undefined}
+            />
+            <ImageInput
+                onImageChange={handleOnImageChange}
+                taskImg={taskToEdit.data.img ?? undefined}
+            />
         </View>
     );
 };

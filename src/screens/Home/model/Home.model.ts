@@ -16,6 +16,6 @@ export const handleTodoAdd = (
         title: null,
         img: null,
         deadline: null,
-        timeStamp: null,
+        timeStamp: 0,
     });
 };

@@ -8,7 +8,7 @@ import { formatDate } from "src/shared/helpers/formatDate.ts";
 
 interface DateInputProps {
     onDateChange: (date: number) => void;
-    taskDate: number | null;
+    taskDate?: number;
 }
 
 export const DateInput = (props: DateInputProps) => {

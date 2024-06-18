@@ -8,7 +8,7 @@ export interface ArticleBarProps {
     style?: StyleProp<TextStyle>;
 }
 
-export const ArticleBar = ({ style, text, buttons }: ArticleBarProps) => {
+export const ArticleBar = ({ style, text }: ArticleBarProps) => {
     return (
         <>
             <Text style={[styles.articleTitle, style]}>{text}</Text>

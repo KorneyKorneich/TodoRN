@@ -46,7 +46,6 @@ export const TaskDetails = ({ route }: NavigationProps) => {
 
     const handleOnDelete = () => {
         dispatch(deleteTask(taskData.id));
-        //todo: delete img from storage
         navigation.goBack();
     };
 

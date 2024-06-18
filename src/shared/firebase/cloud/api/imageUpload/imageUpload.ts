@@ -12,7 +12,7 @@ export async function uploadImageAsync(uri: string) {
         const blob = response.data;
 
         const fileRef = ref(getStorage(), uuid_v4());
-        const result = await uploadBytes(fileRef, blob);
+        await uploadBytes(fileRef, blob);
 
         if (blob && typeof blob.close === "function") {
             blob.close();
