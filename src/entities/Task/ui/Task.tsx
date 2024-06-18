@@ -11,18 +11,14 @@ type TaskComponentProps = {
 
 export const Task = (props: TaskComponentProps) => {
     const { task } = props;
-    // const dispatch = useAppDispatch();
-
     const navigation = useAppNavigation();
-
-    // const [toggleCheckBox, setToggleCheckBox] = useState(false);
-    // const [isDisabled, setDisabled] = useState(false);
 
     const handleOnPress = () => {
         navigation.navigate("TaskDetails", {
-            taskData: task,
+            taskId: task.id,
         });
     };
+
     const deadline = task.data.deadline ? formatDate(new Date(task.data.deadline)) : null;
 
     return (

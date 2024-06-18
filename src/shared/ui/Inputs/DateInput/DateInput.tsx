@@ -8,22 +8,21 @@ import { formatDate } from "src/shared/helpers/formatDate.ts";
 
 interface DateInputProps {
     onDateChange: (date: number) => void;
+    taskDate: number | null;
 }
 
 export const DateInput = (props: DateInputProps) => {
-    const { onDateChange } = props;
+    const { onDateChange, taskDate } = props;
 
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-    const [dateValue, setDateValue] = useState<string | null>(null);
+    const [dateValue, setDateValue] = useState<Date | null>(taskDate ? new Date(taskDate) : null);
 
     const toggleDatePicker = () => {
         setDatePickerVisibility(!isDatePickerVisible);
     };
 
     const handleConfirm = (date: Date) => {
-        const validData = formatDate(date);
-        // console.log(date.valueOf());
-        setDateValue(validData);
+        setDateValue(new Date(date));
         onDateChange(date.valueOf());
         toggleDatePicker();
     };
@@ -35,7 +34,7 @@ export const DateInput = (props: DateInputProps) => {
                     placeholder={"Deadline (optional)"}
                     placeholderTextColor={dateValue ? ColorGuide.WHITE : ColorGuide.GREY}
                     style={styles.dateInput}
-                    value={dateValue === null ? "" : dateValue}
+                    value={dateValue ? formatDate(dateValue) : ""}
                     readOnly={true}
                 />
                 <TouchableOpacity onPress={toggleDatePicker}>

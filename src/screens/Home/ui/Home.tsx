@@ -1,5 +1,5 @@
 // import { TaskList } from "src/widgets/TaskList/ui/TaskList.tsx";
-// import { AppHeader } from "src/shared/ui/Text/AppHeader.tsx";
+// import { AppHeader } from "src/shared/ui/Headers/AppHeader.tsx";
 // import { Screens } from "src/shared/types/navigationTypes/navigationTypes.ts";
 // import Settings from "src/shared/assets/icons/settings.svg";
 // import { TaskAddButton } from "src/shared/ui/Buttons/TaskAddButton/TaskAddButton.tsx";
@@ -27,7 +27,7 @@
 // };
 import { useState } from "react";
 import { TaskList } from "src/widgets/TaskList/ui/TaskList.tsx";
-import { AppHeader } from "src/shared/ui/Text/AppHeader.tsx";
+import { AppHeader } from "src/shared/ui/Headers/AppHeader.tsx";
 import { Screens } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import Settings from "src/shared/assets/icons/settings.svg";
 import { TaskAddButton } from "src/shared/ui/Buttons/TaskAddButton/TaskAddButton.tsx";

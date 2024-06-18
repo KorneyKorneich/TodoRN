@@ -8,10 +8,11 @@ import { ModalButton } from "src/shared/ui/Buttons/ModalButton/ModalButton.tsx";
 
 interface ImageInputProps {
     onImageChange: (image: string) => void;
+    taskImg: string | null;
 }
 
-export const ImageInput: React.FC<ImageInputProps> = ({ onImageChange }) => {
-    const [selectedImage, setSelectedImage] = useState<string | undefined>();
+export const ImageInput = ({ onImageChange, taskImg }: ImageInputProps) => {
+    const [selectedImage, setSelectedImage] = useState<string | undefined>(taskImg ?? undefined);
     const [pictureName, setPictureName] = useState<string | undefined>();
     const [isPictureVisible, setIsPictureVisible] = useState<boolean>(false);
 
@@ -23,9 +24,6 @@ export const ImageInput: React.FC<ImageInputProps> = ({ onImageChange }) => {
         };
         launchImageLibrary(options, (response) => {
             if (response.assets) {
-                console.log(response.assets);
-                // const base64Image = response.assets[0].base64 ?? "";
-                // const fileName = response.assets[0].fileName ?? "";
                 setSelectedImage(response.assets[0].uri);
                 onImageChange(response.assets[0].uri ?? "");
                 setPictureName(response.assets[0].fileName);
@@ -48,10 +46,13 @@ export const ImageInput: React.FC<ImageInputProps> = ({ onImageChange }) => {
                     <TextInput
                         placeholder={"Picture (optional)"}
                         placeholderTextColor={pictureName ? ColorGuide.WHITE : ColorGuide.GREY}
-                        style={[styles.default, pictureName ? styles.imageName : styles.emptyInput]}
-                        value={pictureName ?? ""}
+                        style={[
+                            styles.default,
+                            pictureName !== "" ? styles.imageName : styles.emptyInput,
+                        ]}
+                        value={pictureName ? pictureName : selectedImage ? "Check out image" : ""}
                         editable={false}
-                        onPressIn={pictureName ? togglePicture : undefined}
+                        onPressIn={pictureName !== "" ? togglePicture : undefined}
                     />
                 </View>
                 <TouchableOpacity onPress={handleOnIconPress}>

@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import styles from "./AppHeader.styles.ts";
 import { Screens, useAppNavigation } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import ChevronLeft from "src/shared/assets/icons/chevron-left.svg";
@@ -20,7 +20,9 @@ export const AppHeader = ({ text, buttons, screen }: HeaderProps) => {
             {screen === Screens.HOME ? (
                 <Text style={styles.headerTitle}>{text}</Text>
             ) : (
-                <ChevronLeft onPress={handleGoBack} />
+                <TouchableOpacity onPress={handleGoBack}>
+                    <ChevronLeft />
+                </TouchableOpacity>
             )}
             <View style={styles.navBar}>{buttons}</View>
         </View>

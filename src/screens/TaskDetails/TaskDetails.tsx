@@ -5,7 +5,7 @@ import {
     TaskEditRouteParams,
     useAppNavigation,
 } from "src/shared/types/navigationTypes/navigationTypes.ts";
-import { AppHeader } from "src/shared/ui/Text/AppHeader.tsx";
+import { AppHeader } from "src/shared/ui/Headers/AppHeader.tsx";
 import styles from "./TaskDetails.styles.ts";
 import { ArticleBar } from "src/shared/ui/ArticleTitle/ArticleTitle.tsx";
 import { formatDate } from "src/shared/helpers/formatDate.ts";
@@ -13,24 +13,62 @@ import { TaskEditButton } from "src/shared/ui/Buttons/TaskEditButton/TaskEditBut
 import { TaskDeleteButton } from "src/shared/ui/Buttons/TaskDeleteButton/TaskDeleteButton.tsx";
 import { deleteTask } from "src/shared/firebase/cloud/api/deleteTask/deleteTask.ts";
 import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
+import { CustomModal } from "src/shared/ui/Modal/CustomModal.tsx";
+import { TodoEditWidget } from "src/widgets/TodoEditWidget/TodoEditWidget.tsx";
+import { useState } from "react";
+import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts";
+import { editTask } from "src/shared/firebase/cloud/api/editTask/editTask.ts";
+import { useSelector } from "react-redux";
+import { getState } from "src/shared/slices/TodoSlice/selectors/getState.ts";
 
 export const TaskDetails = ({ route }: NavigationProps) => {
-    const { taskData }: TaskEditRouteParams = route.params ?? {};
+    const { taskId }: TaskEditRouteParams = route.params ?? "";
+    const taskData = useSelector(getState).tasks.tasks.find((el) => el.id === taskId);
+    const initialTaskData: TaskConfigWithId = taskData ?? {
+        id: "",
+        data: {
+            title: "",
+            img: "",
+            description: "",
+            timeStamp: 0,
+            deadline: 0,
+        },
+    };
+    const [taskToEdit, setTaskToEdit] = useState<TaskConfigWithId>(taskData ?? initialTaskData);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
 
     if (!taskData?.id) return navigation.goBack();
+
     const timeStamp = new Date(taskData.data.timeStamp);
-    const handleOnEdit = () => {};
+
     const handleOnDelete = () => {
         dispatch(deleteTask(taskData.id));
+        //todo: delete img from storage
         navigation.goBack();
+    };
+
+    const handleOnEditConfirm = async () => {
+        console.log("here", taskToEdit.data.title);
+
+        dispatch(editTask(taskToEdit));
+        toggleModal();
+    };
+
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+    };
+
+    const handleModalOpen = () => {
+        setIsModalOpen(true);
     };
     return (
         <>
             <AppHeader
                 buttons={[
-                    <TaskEditButton key={Math.random()} handleOnPress={handleOnEdit} />,
+                    <TaskEditButton key={Math.random()} handleOnPress={handleModalOpen} />,
                     <TaskDeleteButton key={Math.random()} handleOnPress={handleOnDelete} />,
                 ]}
                 screen={Screens.TASK_DETAILS}
@@ -53,6 +91,16 @@ export const TaskDetails = ({ route }: NavigationProps) => {
                 </View>
             </ScrollView>
             <Text style={styles.taskTimestamp}>{formatDate(timeStamp)}</Text>
+            {isModalOpen && (
+                <CustomModal
+                    content={
+                        <TodoEditWidget taskToEdit={taskToEdit} setTaskToEdit={setTaskToEdit} />
+                    }
+                    handleOnPressButton={handleOnEditConfirm}
+                    toggleModal={toggleModal}
+                    buttonTitle={"UPDATE"}
+                />
+            )}
         </>
     );
 };

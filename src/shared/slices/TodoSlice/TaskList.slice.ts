@@ -4,6 +4,7 @@ import { addTaskToDB } from "src/shared/firebase/cloud/api/addTask/addTask.ts";
 import { getTasksList } from "src/shared/firebase/cloud/api/getTaskList/getTasksList.ts";
 import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { deleteTask } from "src/shared/firebase/cloud/api/deleteTask/deleteTask.ts";
+import { editTask } from "src/shared/firebase/cloud/api/editTask/editTask.ts";
 
 const initialState: TasksStoreConfig = {
     tasks: [],
@@ -70,6 +71,39 @@ export const counterSlice = createSlice({
             })
 
             .addCase(deleteTask.rejected, (state) => {
+                state.isError = true;
+                state.isLoading = false;
+            });
+
+        builder
+            .addCase(editTask.pending, (state) => {
+                state.isError = false;
+                state.isLoading = true;
+            })
+
+            .addCase(editTask.fulfilled, (state, action) => {
+                state.isLoading = false;
+                const payload = action.payload;
+
+                const updatedTask = {
+                    ...payload,
+                    data: {
+                        ...payload.data,
+                        deadline: payload.data.deadline || null,
+                        img: payload.data.img || null,
+                    },
+                };
+
+                const taskIndex = state.tasks.findIndex((el) => el.id === action.payload.id);
+
+                if (taskIndex !== -1) {
+                    state.tasks[taskIndex] = updatedTask;
+                } else {
+                    state.tasks.push(updatedTask);
+                }
+            })
+
+            .addCase(editTask.rejected, (state) => {
                 state.isError = true;
                 state.isLoading = false;
             });

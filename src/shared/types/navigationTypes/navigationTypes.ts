@@ -1,10 +1,9 @@
 import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
-import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 
 export type RootStackParamList = {
     Home: undefined;
-    TaskDetails: { taskData?: TaskConfigWithId };
+    TaskDetails: { taskId: string };
 };
 
 export type NavigationProps = NativeStackScreenProps<RootStackParamList>;
@@ -12,7 +11,7 @@ export const useAppNavigation = () =>
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
 export type TaskEditRouteParams = {
-    taskData?: TaskConfigWithId;
+    taskId?: string;
 };
 
 export enum Screens {

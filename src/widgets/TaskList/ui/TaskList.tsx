@@ -10,8 +10,9 @@ import { ArticleBar } from "src/shared/ui/ArticleTitle/ArticleTitle.tsx";
 
 export const TaskList = () => {
     const tasks = useSelector(getState).tasks.tasks;
-    const reversedTasksList = [...tasks].reverse();
-
+    const sortedTaskList = [...tasks].sort((a, b) => {
+        return b.data.timeStamp - a.data.timeStamp;
+    });
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -21,7 +22,7 @@ export const TaskList = () => {
     return (
         <View style={styles.taskListContainer}>
             <ArticleBar text={"LIST OF TODO"} />
-            <FlatList data={reversedTasksList} renderItem={({ item }) => <Task task={item} />} />
+            <FlatList data={sortedTaskList} renderItem={({ item }) => <Task task={item} />} />
         </View>
     );
 };
