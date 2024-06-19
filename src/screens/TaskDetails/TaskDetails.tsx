@@ -20,6 +20,8 @@ import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts
 import { editTask } from "src/shared/firebase/cloud/api/editTask/editTask.ts";
 import { useSelector } from "react-redux";
 import { getState } from "src/shared/slices/TodoSlice/selectors/getState.ts";
+import { uploadImageAsync } from "src/shared/firebase/cloud/api/imageUpload/imageUpload.ts";
+import { swapFiles } from "src/shared/firebase/cloud/api/swapFiles/swapFiles.ts";
 
 export const TaskDetails = ({ route }: NavigationProps) => {
     const { taskId }: TaskEditRouteParams = route.params ?? "";
@@ -28,7 +30,10 @@ export const TaskDetails = ({ route }: NavigationProps) => {
         id: "",
         data: {
             title: "",
-            img: "",
+            img: {
+                downloadURL: "",
+                filename: "",
+            },
             description: "",
             timeStamp: 0,
             deadline: 0,
@@ -45,14 +50,14 @@ export const TaskDetails = ({ route }: NavigationProps) => {
     const timeStamp = new Date(taskData.data.timeStamp);
 
     const handleOnDelete = () => {
-        dispatch(deleteTask(taskData.id));
+        dispatch(
+            deleteTask({ taskId: taskData.id, timestamp: taskData.data.timeStamp.toString() }),
+        );
         navigation.goBack();
     };
 
     const handleOnEditConfirm = async () => {
-        console.log("here", taskToEdit.data.title);
-
-        dispatch(editTask(taskToEdit));
+        await dispatch(editTask(taskToEdit));
         toggleModal();
     };
 
@@ -79,8 +84,11 @@ export const TaskDetails = ({ route }: NavigationProps) => {
                     )}
                 </View>
                 <View>
-                    {taskData.data.img && (
-                        <Image style={styles.taskImageContainer} src={taskData.data.img} />
+                    {taskData.data.img.downloadURL && (
+                        <Image
+                            style={styles.taskImageContainer}
+                            src={taskData.data.img.downloadURL}
+                        />
                     )}
                 </View>
                 <View>

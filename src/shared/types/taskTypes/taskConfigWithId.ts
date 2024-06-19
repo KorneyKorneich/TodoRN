@@ -4,7 +4,7 @@ export interface TaskConfig {
     title: string | null;
     description: string | null;
     deadline: number | null;
-    img: string | null;
+    img: TodoImgConfig;
     timeStamp: number;
 }
 export interface TaskConfigWithId {
@@ -19,4 +19,9 @@ export interface TaskProps {
 export interface dbGetTasksResponse {
     data: DocumentData;
     id: string;
+}
+
+export interface TodoImgConfig {
+    downloadURL: string | null;
+    filename: string | null;
 }

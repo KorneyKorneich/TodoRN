@@ -13,7 +13,10 @@ import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
 const taskToAddInitialState: TaskConfig = {
     description: null,
     title: null,
-    img: null,
+    img: {
+        downloadURL: null,
+        filename: null,
+    },
     deadline: null,
     timeStamp: 0,
 };

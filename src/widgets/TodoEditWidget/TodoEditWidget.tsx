@@ -1,5 +1,5 @@
 import styles from "./TodoEditWidget.styles.ts";
-import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts";
+import { TaskConfigWithId, TodoImgConfig } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { View } from "react-native";
 import { TodoInput } from "src/shared/ui/Inputs/TodoInput/TodoInput.tsx";
 import { InputType } from "src/shared/types/uiConst/uiConst.ts";
@@ -24,7 +24,7 @@ export const TodoEditWidget = (props: TodoEditWidget) => {
         setTaskToEdit({ ...taskToEdit, data: { ...taskToEdit.data, deadline: date } });
     };
 
-    const handleOnImageChange = (img: string) => {
+    const handleOnImageChange = (img: TodoImgConfig) => {
         setTaskToEdit({ ...taskToEdit, data: { ...taskToEdit.data, img: img } });
     };
 
@@ -44,10 +44,7 @@ export const TodoEditWidget = (props: TodoEditWidget) => {
                 onDateChange={handleOnDateChange}
                 taskDate={taskToEdit.data.deadline ?? undefined}
             />
-            <ImageInput
-                onImageChange={handleOnImageChange}
-                taskImg={taskToEdit.data.img ?? undefined}
-            />
+            <ImageInput onImageChange={handleOnImageChange} taskImg={taskToEdit.data.img} />
         </View>
     );
 };

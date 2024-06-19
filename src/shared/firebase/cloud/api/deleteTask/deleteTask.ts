@@ -1,16 +1,24 @@
-import { collection, db } from "src/shared/firebase/cloud";
+import { db, ref, storage } from "src/shared/firebase/cloud";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getDocs, deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc } from "firebase/firestore";
+import { deleteObject } from "firebase/storage";
 
-export const deleteTask = createAsyncThunk<string, string>(
+interface deleteTaskArgs {
+    taskId: string;
+    timestamp: string | null;
+}
+
+export const deleteTask = createAsyncThunk<string, deleteTaskArgs>(
     "tasks/deleteTask",
-    async (taskId: string) => {
-        const tasks = await getDocs(collection(db, "Tasks"));
-        for (const snap of tasks.docs) {
-            if (snap.id === taskId) {
-                await deleteDoc(doc(db, "Tasks", snap.id));
-            }
+    async ({ taskId, timestamp }: deleteTaskArgs) => {
+        // if
+        const docRef = doc(db, "Tasks", taskId);
+        if (timestamp) {
+            const desertRef = ref(storage, `Tasks/${timestamp}`);
+            deleteObject(desertRef);
         }
+        await deleteDoc(docRef);
+
         return taskId;
     },
 );

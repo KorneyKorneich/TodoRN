@@ -14,7 +14,10 @@ export const handleTodoAdd = (
     setTaskToAdd({
         description: null,
         title: null,
-        img: null,
+        img: {
+            downloadURL: null,
+            filename: null,
+        },
         deadline: null,
         timeStamp: 0,
     });

@@ -27,8 +27,7 @@ export const TodoAddWidget = (props: TodoAddWidgetProps) => {
     //Todo: fix - A non-serializable value was detected in the state, in the path: `tasks.tasks.2.data.deadline`. Value: 2024-07-13T17:17:00.000Z
     // Take a look at the reducer(s) handling this action type: tasks/addTaskToDB/fulfilled.
 
-    const handleOnImageChange = (img: string) => {
-        // console.log("widget", img.TodoSlice(0, 5));
+    const handleOnImageChange = (img: { downloadURL: string; filename: string }) => {
         setTaskToAdd({ ...taskToAdd, img: img });
     };
 
