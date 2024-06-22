@@ -11,19 +11,17 @@ import { ArticleBar } from "src/shared/ui/ArticleTitle/ArticleTitle.tsx";
 import { formatDate } from "src/shared/helpers/formatDate.ts";
 import { TaskEditButton } from "src/shared/ui/Buttons/TaskEditButton/TaskEditButton.tsx";
 import { TaskDeleteButton } from "src/shared/ui/Buttons/TaskDeleteButton/TaskDeleteButton.tsx";
-import { deleteTask } from "src/shared/firebase/cloud/api/deleteTask/deleteTask.ts";
+import { deleteTask } from "src/shared/firebase/cloud/api/todos/deleteTask/deleteTask.ts";
 import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
 import { CustomModal } from "src/shared/ui/Modal/CustomModal.tsx";
 import { TodoEditWidget } from "src/widgets/TodoEditWidget/TodoEditWidget.tsx";
 import { useState } from "react";
 import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts";
-import { editTask } from "src/shared/firebase/cloud/api/editTask/editTask.ts";
+import { editTask } from "src/shared/firebase/cloud/api/todos/editTask/editTask.ts";
 import { useSelector } from "react-redux";
 import { getState } from "src/shared/slices/TodoSlice/selectors/getState.ts";
-import { uploadImageAsync } from "src/shared/firebase/cloud/api/imageUpload/imageUpload.ts";
-import { swapFiles } from "src/shared/firebase/cloud/api/swapFiles/swapFiles.ts";
 
-export const TaskDetails = ({ route }: NavigationProps) => {
+export const TaskDetails = ({ route, navigation }: NavigationProps) => {
     const { taskId }: TaskEditRouteParams = route.params ?? "";
     const taskData = useSelector(getState).tasks.tasks.find((el) => el.id === taskId);
     const initialTaskData: TaskConfigWithId = taskData ?? {
@@ -42,7 +40,6 @@ export const TaskDetails = ({ route }: NavigationProps) => {
     const [taskToEdit, setTaskToEdit] = useState<TaskConfigWithId>(taskData ?? initialTaskData);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
 
     if (!taskData?.id) return navigation.goBack();

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TaskList } from "src/widgets/TaskList/ui/TaskList.tsx";
 import { AppHeader } from "src/shared/ui/Headers/AppHeader.tsx";
-import { Screens } from "src/shared/types/navigationTypes/navigationTypes.ts";
+import { NavigationProps, Screens } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import Settings from "src/shared/assets/icons/settings.svg";
 import { TaskAddButton } from "src/shared/ui/Buttons/TaskAddButton/TaskAddButton.tsx";
 import { CustomModal } from "src/shared/ui/Modal/CustomModal.tsx";
@@ -9,6 +9,7 @@ import { TodoAddWidget } from "src/widgets/TodoAddWidget/TodoAddWidget.tsx";
 import { handleTodoAdd } from "src/screens/Home/model/Home.model.ts";
 import { TaskConfig } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
+import { TouchableOpacity } from "react-native";
 
 const taskToAddInitialState: TaskConfig = {
     description: null,
@@ -21,7 +22,7 @@ const taskToAddInitialState: TaskConfig = {
     timeStamp: 0,
 };
 
-export const Home = () => {
+export const Home = ({ navigation }: NavigationProps) => {
     const [taskToAdd, setTaskToAdd] = useState<TaskConfig>(taskToAddInitialState);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -38,11 +39,19 @@ export const Home = () => {
         setIsModalOpen(!isModalOpen);
     };
 
+    const handleGoSettings = () => {
+        navigation.navigate("Logout");
+    };
+
     return (
         <>
             <AppHeader
                 text={"TO DO LIST"}
-                buttons={[<Settings key={Date.now()} />]}
+                buttons={[
+                    <TouchableOpacity key={Date.now()} onPress={handleGoSettings}>
+                        <Settings />
+                    </TouchableOpacity>,
+                ]}
                 screen={Screens.HOME}
             />
             <TaskList />

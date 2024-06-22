@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TasksStoreConfig } from "./config/TasksStore.config.ts";
-import { addTaskToDB } from "src/shared/firebase/cloud/api/addTask/addTask.ts";
-import { getTasksList } from "src/shared/firebase/cloud/api/getTaskList/getTasksList.ts";
+import { addTaskToDB } from "src/shared/firebase/cloud/api/todos/addTask/addTask.ts";
+import { getTasksList } from "src/shared/firebase/cloud/api/todos/getTaskList/getTasksList.ts";
 import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts";
-import { deleteTask } from "src/shared/firebase/cloud/api/deleteTask/deleteTask.ts";
-import { editTask } from "src/shared/firebase/cloud/api/editTask/editTask.ts";
+import { deleteTask } from "src/shared/firebase/cloud/api/todos/deleteTask/deleteTask.ts";
+import { editTask } from "src/shared/firebase/cloud/api/todos/editTask/editTask.ts";
 
 const initialState: TasksStoreConfig = {
     tasks: [],
@@ -12,7 +12,7 @@ const initialState: TasksStoreConfig = {
     isError: false,
 };
 
-export const counterSlice = createSlice({
+export const taskListSlice = createSlice({
     name: "tasks",
     initialState,
     reducers: {},
@@ -110,4 +110,4 @@ export const counterSlice = createSlice({
     },
 });
 
-export default counterSlice.reducer;
+export default taskListSlice.reducer;
