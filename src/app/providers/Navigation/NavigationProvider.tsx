@@ -8,23 +8,33 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StackParamList } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { FIREBASE_AUTH } from "src/shared/firebase/cloud";
 import { useAppDispatch, useAppSelector } from "src/shared/hooks/reduxHooks.ts";
-import { setUser } from "src/shared/slices/UserSlice/userSlice.ts";
-import { useEffect, useRef } from "react";
+import { setIsLoading, setUser } from "src/shared/slices/UserSlice/userSlice.ts";
+import { useEffect, useState } from "react";
 import { LogOut } from "src/screens/LogOut/LogOut.tsx";
+import { OnboardingComponent } from "src/screens/Onboarding/OnboardingComponent/OnboardingComponent.tsx";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const NavigationProvider = () => {
     const Stack = createNativeStackNavigator<StackParamList>();
     const user = useAppSelector((state) => state.user.userData);
     const dispatch = useAppDispatch();
+    const [viewedOnboarding, setViewOnboarding] = useState(false);
+    const checkOnboarding = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@viewedOnboarding");
+            if (value !== null) {
+                setViewOnboarding(true);
+            }
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        onAuthStateChanged(FIREBASE_AUTH, (u) => {
-            console.log("got user!", u);
-            dispatch(setUser(u));
-        });
-    }, [user]);
-    console.log(user);
-
+        checkOnboarding();
+    }, []);
     return (
         <NavigationContainer>
             <Stack.Navigator
@@ -32,6 +42,9 @@ export const NavigationProvider = () => {
                     headerShown: false,
                 }}
             >
+                {!viewedOnboarding && (
+                    <Stack.Screen name={"Onboarding"} component={OnboardingComponent} />
+                )}
                 {user !== null ? (
                     <Stack.Group initialRouteName="Home">
                         <Stack.Screen name="Home" component={Home} />
@@ -39,12 +52,14 @@ export const NavigationProvider = () => {
                         <Stack.Screen name="Logout" component={LogOut} />
                     </Stack.Group>
                 ) : (
-                    <Stack.Group initialRouteName="SignUp">
-                        {/*<Stack.Screen name="Welcome" component={Welcome} />*/}
-                        <Stack.Screen name="SignIn" component={SignIn} />
-                        <Stack.Screen name="SignUp" component={SignUp} />
-                        {/*<Stack.Screen name="ChangePassword" component={ChangePassword} />*/}
-                    </Stack.Group>
+                    <>
+                        <Stack.Group initialRouteName="SignUp">
+                            {/*<Stack.Screen name="Welcome" component={Welcome} />*/}
+                            <Stack.Screen name="SignIn" component={SignIn} />
+                            <Stack.Screen name="SignUp" component={SignUp} />
+                            {/*<Stack.Screen name="ChangePassword" component={ChangePassword} />*/}
+                        </Stack.Group>
+                    </>
                 )}
             </Stack.Navigator>
         </NavigationContainer>

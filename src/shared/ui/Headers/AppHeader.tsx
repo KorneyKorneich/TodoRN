@@ -1,8 +1,9 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import styles from "./AppHeader.styles.ts";
 import { Screens, useAppNavigation } from "src/shared/types/navigationTypes/navigationTypes.ts";
-import ChevronLeft from "src/shared/assets/icons/chevron-left.svg";
+import { ChevronLeft } from "src/shared/assets/icons/chevron-left.tsx";
 import { ReactNode, useCallback } from "react";
+import { ColorGuide } from "src/shared/types/styles/styleConstants.ts";
 
 interface HeaderProps {
     text?: string;
@@ -21,7 +22,7 @@ export const AppHeader = ({ text, buttons, screen }: HeaderProps) => {
                 <Text style={styles.headerTitle}>{text}</Text>
             ) : (
                 <TouchableOpacity onPress={handleGoBack}>
-                    <ChevronLeft />
+                    <ChevronLeft color={ColorGuide.BLACK} />
                 </TouchableOpacity>
             )}
             <View style={styles.navBar}>{buttons}</View>

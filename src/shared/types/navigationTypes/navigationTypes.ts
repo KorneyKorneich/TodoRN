@@ -9,6 +9,7 @@ export type StackParamList = {
     SignUp: undefined;
     ChangePassword: undefined;
     Logout: undefined;
+    Onboarding: undefined;
 };
 
 export type NavigationProps = NativeStackScreenProps<StackParamList>;
