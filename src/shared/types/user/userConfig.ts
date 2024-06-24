@@ -5,7 +5,6 @@ export interface UserSignInConfig {
 
 export interface UserSignUpConfig {
     email: string | null;
-    username: string | null;
     password: string | null;
     repeatPassword: string | null;
 }

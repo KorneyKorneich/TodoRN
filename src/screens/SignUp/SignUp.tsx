@@ -17,7 +17,7 @@ interface ErrorConfig {
     username?: string;
     passwordsNotMatch?: string;
     firebaseError?: string;
-    noErrors?: boolean;
+    noErrors: boolean;
 }
 
 export const SignUp = ({ navigation }: NavigationProps) => {
@@ -25,32 +25,28 @@ export const SignUp = ({ navigation }: NavigationProps) => {
         password: null,
         email: null,
         repeatPassword: null,
-        username: null,
     });
-    const [errors, setErrors] = useState<ErrorConfig>();
+    const [errors, setErrors] = useState<ErrorConfig>({ noErrors: false });
 
     const handleEmailChange = (email: string) => {
         setErrors({ ...errors, email: undefined, firebaseError: undefined });
         setUserInfoSignUp({ ...userInfoSignUp, email: email });
     };
+
     const handlePasswordChange = (password: string) => {
         setErrors({ ...errors, password: undefined, firebaseError: undefined });
         setUserInfoSignUp({ ...userInfoSignUp, password: password });
     };
+
     const handlePasswordConfirmChange = (password: string) => {
         setErrors({ ...errors, repeatPassword: undefined, firebaseError: undefined });
         setUserInfoSignUp({ ...userInfoSignUp, repeatPassword: password });
     };
-    const handleUsernameChange = (username: string) => {
-        setErrors({ ...errors, username: undefined, firebaseError: undefined });
-        setUserInfoSignUp({ ...userInfoSignUp, username: username });
-    };
 
-    const validate = () => {
-        const newErrors: ErrorConfig = {};
+    const validate = (): boolean => {
+        const newErrors: ErrorConfig = { noErrors: true };
         const requiredFields: Partial<Record<keyof UserSignUpConfig, string>> = {
             email: "Email is required",
-            username: "Username is required",
             password: "Password is required",
             repeatPassword: "Password confirmation is required",
         };
@@ -61,15 +57,18 @@ export const SignUp = ({ navigation }: NavigationProps) => {
             const key = field as keyof UserSignUpConfig;
             if (!userInfoSignUp[key]) {
                 newErrors[key] = requiredFields[key]!;
+                newErrors.noErrors = false;
             }
         });
 
         if (userInfoSignUp.password && userInfoSignUp.password.length < 6) {
             newErrors.password = "Password must be at least 6 characters long";
+            newErrors.noErrors = false;
         }
 
         if (userInfoSignUp.email && !emailRegex.test(userInfoSignUp.email)) {
             newErrors.email = "Invalid email format";
+            newErrors.noErrors = false;
         }
 
         if (
@@ -78,30 +77,31 @@ export const SignUp = ({ navigation }: NavigationProps) => {
             userInfoSignUp.password !== userInfoSignUp.repeatPassword
         ) {
             newErrors.passwordsNotMatch = "Passwords do not match";
-        }
-
-        if (Object.keys(newErrors).length === 0) {
-            newErrors.noErrors = true;
+            newErrors.noErrors = false;
         }
 
         setErrors(newErrors);
+        return newErrors.noErrors;
     };
 
-    const handleSingUp = async () => {
-        console.log("here");
-        validate();
-        errors?.noErrors
-            ? await createUser({
-                  email: userInfoSignUp.email!,
-                  password: userInfoSignUp.password!,
-                  username: userInfoSignUp.username!,
-              }).catch((error) => {
-                  setErrors({ ...errors, firebaseError: getFirebaseAuthErrorMessage(error) });
-              })
-            : null;
+    const handleSignUp = async () => {
+        const isValid = validate();
+        if (isValid) {
+            const errorMessage = await createUser({
+                email: userInfoSignUp.email!,
+                password: userInfoSignUp.password!,
+            });
+
+            if (errorMessage) {
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    firebaseError: getFirebaseAuthErrorMessage(errorMessage),
+                }));
+            }
+        }
     };
 
-    const handleToSingIn = () => {
+    const handleToSignIn = () => {
         navigation.navigate("SignIn");
     };
 
@@ -112,46 +112,41 @@ export const SignUp = ({ navigation }: NavigationProps) => {
                     <View style={styles.logo}>
                         <Union />
                     </View>
-                    <View style={styles.singUpForm}>
+                    <View style={styles.signUpForm}>
                         <AppInput
-                            placeholder={"Email"}
+                            placeholder="Email"
                             value={userInfoSignUp.email}
                             setValue={handleEmailChange}
                         />
-                        {errors?.email && <Text style={styles.invalidInput}>{errors.email}</Text>}
-                        <AppInput
-                            placeholder={"Username"}
-                            value={userInfoSignUp.username}
-                            setValue={handleUsernameChange}
-                        />
-                        {errors?.username && (
-                            <Text style={styles.invalidInput}>{errors.username}</Text>
-                        )}
+                        {errors.email && <Text style={styles.invalidInput}>{errors.email}</Text>}
                         <PasswordInput
-                            placeholder={"Password"}
+                            placeholder="Password"
                             value={userInfoSignUp.password}
                             setValue={handlePasswordChange}
                         />
-                        {errors?.password && (
+                        {errors.password && (
                             <Text style={styles.invalidInput}>{errors.password}</Text>
                         )}
                         <PasswordInput
-                            placeholder={"Confirm Password"}
+                            placeholder="Confirm Password"
                             value={userInfoSignUp.repeatPassword}
                             setValue={handlePasswordConfirmChange}
                         />
-                        {errors?.repeatPassword && (
+                        {errors.repeatPassword && (
                             <Text style={styles.invalidInput}>{errors.repeatPassword}</Text>
                         )}
-                        {errors?.passwordsNotMatch && (
+                        {errors.passwordsNotMatch && (
                             <Text style={styles.invalidInput}>{errors.passwordsNotMatch}</Text>
                         )}
+                        {errors.firebaseError && (
+                            <Text style={styles.invalidInput}>{errors.firebaseError}</Text>
+                        )}
                     </View>
-                    <AuthButton onPress={handleSingUp} buttonTitle={"SING UP"} />
-                    <View style={styles.toSingInContainer}>
+                    <AuthButton onPress={handleSignUp} buttonTitle="SIGN UP" />
+                    <View style={styles.toSignInContainer}>
                         <Text style={styles.text}>Already have an account?</Text>
-                        <TouchableOpacity onPress={handleToSingIn}>
-                            <Text style={styles.toSingUp}>Sing In</Text>
+                        <TouchableOpacity onPress={handleToSignIn}>
+                            <Text style={styles.toSignUp}>Sign In</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

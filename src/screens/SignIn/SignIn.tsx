@@ -13,7 +13,7 @@ import { getFirebaseAuthErrorMessage } from "src/shared/helpers/getAuthError.ts"
 interface ErrorConfig {
     password?: string;
     email?: string;
-    noErrors?: boolean;
+    noErrors: boolean;
     firebaseError?: string;
 }
 
@@ -22,20 +22,19 @@ export const SignIn = ({ navigation }: NavigationProps) => {
         password: null,
         email: null,
     });
-    const [errors, setErrors] = useState<ErrorConfig>();
+    const [errors, setErrors] = useState<ErrorConfig>({ noErrors: false });
 
     const handleEmailChange = (email: string) => {
-        setErrors({ ...errors, email: undefined, firebaseError: undefined });
         setUserInfo({ ...userInfo, email: email });
     };
+
     const handlePasswordChange = (password: string) => {
-        setErrors({ ...errors, password: undefined, firebaseError: undefined });
         setUserInfo({ ...userInfo, password: password });
     };
 
-    const validate = () => {
-        setErrors({});
-        const newErrors: ErrorConfig = {};
+    const validate = (): boolean => {
+        const newErrors: ErrorConfig = { noErrors: true };
+
         const requiredFields: Partial<Record<keyof UserSignInConfig, string>> = {
             email: "Email is required",
             password: "Password is required",
@@ -47,78 +46,76 @@ export const SignIn = ({ navigation }: NavigationProps) => {
             const key = field as keyof UserSignInConfig;
             if (!userInfo[key]) {
                 newErrors[key] = requiredFields[key]!;
+                newErrors.noErrors = false;
             }
         });
 
         if (userInfo.password && userInfo.password.length < 6) {
             newErrors.password = "Password must be at least 6 characters long";
+            newErrors.noErrors = false;
         }
 
         if (userInfo.email && !emailRegex.test(userInfo.email)) {
             newErrors.email = "Invalid email format";
-        }
-
-        if (Object.keys(newErrors).length === 0) {
-            newErrors.noErrors = true;
+            newErrors.noErrors = false;
         }
 
         setErrors(newErrors);
+        return newErrors.noErrors;
     };
 
-    const handleSingIn = async () => {
-        validate();
-        errors?.noErrors
-            ? await signIn({
-                  email: userInfo.email!,
-                  password: userInfo.password!,
-              }).catch((errCode) => {
-                  console.log(getFirebaseAuthErrorMessage(errCode));
-                  setErrors({ ...errors, firebaseError: getFirebaseAuthErrorMessage(errCode) });
-              })
-            : null;
+    const handleSignIn = async () => {
+        const isValid = validate();
+        if (isValid) {
+            const errorMessage = await signIn({
+                email: userInfo.email!,
+                password: userInfo.password!,
+            });
+
+            if (errorMessage) {
+                setErrors((prevErrors) => ({ ...prevErrors, firebaseError: errorMessage }));
+            }
+        }
     };
-    const handleToSingUp = () => {
+
+    const handleToSignUp = () => {
         navigation.navigate("SignUp");
     };
 
     return (
-        <>
-            <KeyboardAvoidingView behavior="position">
-                <View style={styles.container}>
-                    <View style={styles.logo}>
-                        <Union />
-                    </View>
-                    <View style={styles.singInForm}>
-                        {errors?.firebaseError && (
-                            <Text style={styles.invalidInput}>{errors.firebaseError}</Text>
-                        )}
-                        <AppInput
-                            placeholder={"Email"}
-                            value={userInfo.email}
-                            setValue={handleEmailChange}
-                        />
-                        {errors?.email && <Text style={styles.invalidInput}>{errors.email}</Text>}
-                        <PasswordInput
-                            placeholder={"Password"}
-                            value={userInfo.password}
-                            setValue={handlePasswordChange}
-                        />
-                        {errors?.password && (
-                            <Text style={styles.invalidInput}>{errors.password}</Text>
-                        )}
-                    </View>
-                    <TouchableOpacity>
-                        <Text style={styles.text}>Forgot Password?</Text>
-                    </TouchableOpacity>
-                    <AuthButton onPress={handleSingIn} buttonTitle={"SING IN"} />
-                    <View style={styles.toSingUpContainer}>
-                        <Text style={styles.text}>Don&apos;t have an account?</Text>
-                        <TouchableOpacity onPress={handleToSingUp}>
-                            <Text style={styles.toSingUp}>Sing Up</Text>
-                        </TouchableOpacity>
-                    </View>
+        <KeyboardAvoidingView behavior="position">
+            <View style={styles.container}>
+                <View style={styles.logo}>
+                    <Union />
                 </View>
-            </KeyboardAvoidingView>
-        </>
+                <View style={styles.signInForm}>
+                    {errors.firebaseError && (
+                        <Text style={styles.invalidInput}>{errors.firebaseError}</Text>
+                    )}
+                    <AppInput
+                        placeholder="Email"
+                        value={userInfo.email}
+                        setValue={handleEmailChange}
+                    />
+                    {errors.email && <Text style={styles.invalidInput}>{errors.email}</Text>}
+                    <PasswordInput
+                        placeholder="Password"
+                        value={userInfo.password}
+                        setValue={handlePasswordChange}
+                    />
+                    {errors.password && <Text style={styles.invalidInput}>{errors.password}</Text>}
+                </View>
+                <TouchableOpacity>
+                    <Text style={styles.text}>Forgot Password?</Text>
+                </TouchableOpacity>
+                <AuthButton onPress={handleSignIn} buttonTitle="SIGN IN" />
+                <View style={styles.toSignUpContainer}>
+                    <Text style={styles.text}>Don&apos;t have an account?</Text>
+                    <TouchableOpacity onPress={handleToSignUp}>
+                        <Text style={styles.toSignUp}>Sign Up</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </KeyboardAvoidingView>
     );
 };

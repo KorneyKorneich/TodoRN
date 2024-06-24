@@ -21,7 +21,7 @@ export default StyleSheet.create({
         width: WIDTH * 0.9,
         marginHorizontal: "auto",
     },
-    singInForm: {
+    signInForm: {
         gap: 10,
     },
     text: {
@@ -32,13 +32,13 @@ export default StyleSheet.create({
         fontSize: BodyFontSizes.BODY_2,
         textAlign: "right",
     },
-    toSingUp: {
+    toSignUp: {
         marginVertical: 5,
         fontFamily: "Montserrat",
         color: ColorGuide.PRIMARY_COLOR,
         fontSize: BodyFontSizes.BODY_2,
     },
-    toSingUpContainer: {
+    toSignUpContainer: {
         flexDirection: "row",
         justifyContent: "center",
         gap: 10,

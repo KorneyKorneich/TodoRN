@@ -1,5 +1,9 @@
 import { StyleSheet } from "react-native";
-import { HeadlineSizes } from "src/shared/types/styles/styleConstants.ts";
+import {
+    BodyFontSizes,
+    ColorGuide,
+    HeadlineSizes,
+} from "src/shared/types/styles/styleConstants.ts";
 
 export default StyleSheet.create({
     logo: {
@@ -14,4 +18,22 @@ export default StyleSheet.create({
         flexDirection: "column",
     },
     userInfo: {},
+    textContainer: {
+        justifyContent: "space-between",
+        display: "flex",
+        flexDirection: "row",
+        fontFamily: "Montserrat",
+        fontSize: BodyFontSizes.BODY_2,
+        marginVertical: "2%",
+    },
+    title: {
+        color: ColorGuide.BLACK,
+        fontFamily: "Montserrat",
+        fontSize: BodyFontSizes.BODY_2,
+    },
+    content: {
+        color: ColorGuide.PRIMARY_COLOR,
+        fontFamily: "Montserrat",
+        fontSize: BodyFontSizes.BODY_2,
+    },
 });

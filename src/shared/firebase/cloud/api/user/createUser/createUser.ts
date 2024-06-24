@@ -1,17 +1,18 @@
 import { FIREBASE_AUTH } from "src/shared/firebase/cloud";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { setUser } from "src/shared/slices/UserSlice/userSlice.ts";
+import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
 
 interface userCreationProps {
-    username: string;
     email: string;
     password: string;
 }
 
 export const createUser = async (user: userCreationProps) => {
-    const { username, email, password } = user;
+    const { email, password } = user;
     await createUserWithEmailAndPassword(FIREBASE_AUTH, email, password)
-        .then(({ user }) => {
-            updateProfile(user, { displayName: username });
+        .then(async ({ user }) => {
+            setUser({ email: user.email });
         })
         .catch((err) => {
             throw err.code;
