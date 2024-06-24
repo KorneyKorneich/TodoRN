@@ -9,9 +9,13 @@ interface userCreationProps {
 
 export const createUser = async (user: userCreationProps) => {
     const { username, email, password } = user;
-    await createUserWithEmailAndPassword(FIREBASE_AUTH, email, password).then(({ user }) => {
-        updateProfile(user, { displayName: username });
-    });
+    await createUserWithEmailAndPassword(FIREBASE_AUTH, email, password)
+        .then(({ user }) => {
+            updateProfile(user, { displayName: username });
+        })
+        .catch((err) => {
+            throw err.code;
+        });
 
     return;
 };

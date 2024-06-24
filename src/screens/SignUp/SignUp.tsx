@@ -8,6 +8,7 @@ import { UserSignUpConfig } from "src/shared/types/user/userConfig.ts";
 import { AuthButton } from "src/shared/ui/Buttons/AuthButton/AuthButton.tsx";
 import { NavigationProps } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { createUser } from "src/shared/firebase/cloud/api/user/createUser/createUser.ts";
+import { getFirebaseAuthErrorMessage } from "src/shared/helpers/getAuthError.ts";
 
 interface ErrorConfig {
     password?: string;
@@ -15,6 +16,7 @@ interface ErrorConfig {
     repeatPassword?: string;
     username?: string;
     passwordsNotMatch?: string;
+    firebaseError?: string;
     noErrors?: boolean;
 }
 
@@ -28,19 +30,19 @@ export const SignUp = ({ navigation }: NavigationProps) => {
     const [errors, setErrors] = useState<ErrorConfig>();
 
     const handleEmailChange = (email: string) => {
-        setErrors({ ...errors, email: undefined });
+        setErrors({ ...errors, email: undefined, firebaseError: undefined });
         setUserInfoSignUp({ ...userInfoSignUp, email: email });
     };
     const handlePasswordChange = (password: string) => {
-        setErrors({ ...errors, password: undefined });
+        setErrors({ ...errors, password: undefined, firebaseError: undefined });
         setUserInfoSignUp({ ...userInfoSignUp, password: password });
     };
     const handlePasswordConfirmChange = (password: string) => {
-        setErrors({ ...errors, repeatPassword: undefined });
+        setErrors({ ...errors, repeatPassword: undefined, firebaseError: undefined });
         setUserInfoSignUp({ ...userInfoSignUp, repeatPassword: password });
     };
     const handleUsernameChange = (username: string) => {
-        setErrors({ ...errors, username: undefined });
+        setErrors({ ...errors, username: undefined, firebaseError: undefined });
         setUserInfoSignUp({ ...userInfoSignUp, username: username });
     };
 
@@ -93,6 +95,8 @@ export const SignUp = ({ navigation }: NavigationProps) => {
                   email: userInfoSignUp.email!,
                   password: userInfoSignUp.password!,
                   username: userInfoSignUp.username!,
+              }).catch((error) => {
+                  setErrors({ ...errors, firebaseError: getFirebaseAuthErrorMessage(error) });
               })
             : null;
     };
@@ -103,7 +107,7 @@ export const SignUp = ({ navigation }: NavigationProps) => {
 
     return (
         <>
-            <KeyboardAvoidingView keyboardVerticalOffset={20} behavior="position">
+            <KeyboardAvoidingView behavior="position">
                 <View style={styles.container}>
                     <View style={styles.logo}>
                         <Union />

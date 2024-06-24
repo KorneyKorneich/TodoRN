@@ -6,6 +6,7 @@ export interface TaskConfig {
     deadline: number | null;
     img: TodoImgConfig;
     timeStamp: number;
+    userId: string | null;
 }
 export interface TaskConfigWithId {
     id: string;

@@ -8,11 +8,13 @@ import { UserSignInConfig } from "src/shared/types/user/userConfig.ts";
 import { AuthButton } from "src/shared/ui/Buttons/AuthButton/AuthButton.tsx";
 import { NavigationProps } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { signIn } from "src/shared/firebase/cloud/api/user/signIn/signIn.ts";
+import { getFirebaseAuthErrorMessage } from "src/shared/helpers/getAuthError.ts";
 
 interface ErrorConfig {
     password?: string;
     email?: string;
     noErrors?: boolean;
+    firebaseError?: string;
 }
 
 export const SignIn = ({ navigation }: NavigationProps) => {
@@ -23,13 +25,16 @@ export const SignIn = ({ navigation }: NavigationProps) => {
     const [errors, setErrors] = useState<ErrorConfig>();
 
     const handleEmailChange = (email: string) => {
+        setErrors({ ...errors, email: undefined, firebaseError: undefined });
         setUserInfo({ ...userInfo, email: email });
     };
     const handlePasswordChange = (password: string) => {
+        setErrors({ ...errors, password: undefined, firebaseError: undefined });
         setUserInfo({ ...userInfo, password: password });
     };
 
     const validate = () => {
+        setErrors({});
         const newErrors: ErrorConfig = {};
         const requiredFields: Partial<Record<keyof UserSignInConfig, string>> = {
             email: "Email is required",
@@ -66,6 +71,9 @@ export const SignIn = ({ navigation }: NavigationProps) => {
             ? await signIn({
                   email: userInfo.email!,
                   password: userInfo.password!,
+              }).catch((errCode) => {
+                  console.log(getFirebaseAuthErrorMessage(errCode));
+                  setErrors({ ...errors, firebaseError: getFirebaseAuthErrorMessage(errCode) });
               })
             : null;
     };
@@ -81,16 +89,23 @@ export const SignIn = ({ navigation }: NavigationProps) => {
                         <Union />
                     </View>
                     <View style={styles.singInForm}>
+                        {errors?.firebaseError && (
+                            <Text style={styles.invalidInput}>{errors.firebaseError}</Text>
+                        )}
                         <AppInput
                             placeholder={"Email"}
                             value={userInfo.email}
                             setValue={handleEmailChange}
                         />
+                        {errors?.email && <Text style={styles.invalidInput}>{errors.email}</Text>}
                         <PasswordInput
                             placeholder={"Password"}
                             value={userInfo.password}
                             setValue={handlePasswordChange}
                         />
+                        {errors?.password && (
+                            <Text style={styles.invalidInput}>{errors.password}</Text>
+                        )}
                     </View>
                     <TouchableOpacity>
                         <Text style={styles.text}>Forgot Password?</Text>

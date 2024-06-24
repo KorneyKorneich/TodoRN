@@ -20,5 +20,6 @@ export const handleTodoAdd = (
         },
         deadline: null,
         timeStamp: 0,
+        userId: null,
     });
 };

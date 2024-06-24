@@ -43,4 +43,8 @@ export default StyleSheet.create({
         justifyContent: "center",
         gap: 10,
     },
+    invalidInput: {
+        fontFamily: "Montserrat",
+        color: ColorGuide.ACCENT_COLOR,
+    },
 });

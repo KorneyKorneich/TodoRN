@@ -10,6 +10,7 @@ import { handleTodoAdd } from "src/screens/Home/model/Home.model.ts";
 import { TaskConfig } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
 import { TouchableOpacity } from "react-native";
+import { FIREBASE_AUTH } from "src/shared/firebase/cloud";
 
 const taskToAddInitialState: TaskConfig = {
     description: null,
@@ -20,6 +21,7 @@ const taskToAddInitialState: TaskConfig = {
     },
     deadline: null,
     timeStamp: 0,
+    userId: null,
 };
 
 export const Home = ({ navigation }: NavigationProps) => {
@@ -29,7 +31,11 @@ export const Home = ({ navigation }: NavigationProps) => {
     const dispatch = useAppDispatch();
 
     const handleAdd = () => {
-        const updatedTask = { ...taskToAdd, timeStamp: Date.now() };
+        const updatedTask = {
+            ...taskToAdd,
+            timeStamp: Date.now(),
+            userId: FIREBASE_AUTH.currentUser!.uid,
+        };
         setTaskToAdd(updatedTask);
         handleTodoAdd(updatedTask, setTaskToAdd, dispatch);
         toggleModal();
