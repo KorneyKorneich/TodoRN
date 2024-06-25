@@ -1,5 +1,5 @@
 export const formatDate = (date: Date) => {
-    const day = date.getUTCDate();
+    const day = date.getDate();
     const monthNames = [
         "January",
         "February",

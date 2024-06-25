@@ -8,7 +8,6 @@ import { UserSignInConfig } from "src/shared/types/user/userConfig.ts";
 import { AuthButton } from "src/shared/ui/Buttons/AuthButton/AuthButton.tsx";
 import { NavigationProps } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { signIn } from "src/shared/firebase/cloud/api/user/signIn/signIn.ts";
-import { getFirebaseAuthErrorMessage } from "src/shared/helpers/getAuthError.ts";
 
 interface ErrorConfig {
     password?: string;

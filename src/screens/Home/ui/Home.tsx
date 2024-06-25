@@ -27,7 +27,6 @@ const taskToAddInitialState: TaskConfig = {
 export const Home = ({ navigation }: NavigationProps) => {
     const [taskToAdd, setTaskToAdd] = useState<TaskConfig>(taskToAddInitialState);
     const [isModalOpen, setIsModalOpen] = useState(false);
-
     const dispatch = useAppDispatch();
 
     const handleAdd = () => {

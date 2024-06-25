@@ -1,7 +1,5 @@
 import styles from "./OnboardingItem.styles.ts";
 import { Image, Text, useWindowDimensions, View } from "react-native";
-import { ImageSourcePropType } from "react-native/Libraries/Image/Image";
-import { HEIGHT } from "src/shared/types/styles/styleConstants.ts";
 import { SlideProp } from "../config/type.ts";
 
 interface OnboardingItemProps {

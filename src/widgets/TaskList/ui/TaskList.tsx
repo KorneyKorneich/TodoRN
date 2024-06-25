@@ -1,4 +1,4 @@
-import { FlatList, View } from "react-native";
+import { FlatList, Image, Text, View } from "react-native";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getState } from "src/shared/slices/TodoSlice/selectors/getState.ts";
@@ -22,7 +22,20 @@ export const TaskList = () => {
     return (
         <View style={styles.taskListContainer}>
             <ArticleBar text={"LIST OF TODO"} />
-            <FlatList data={sortedTaskList} renderItem={({ item }) => <Task task={item} />} />
+            {tasks.length === 0 ? (
+                <View style={styles.emptyContainer}>
+                    <Text style={styles.emptyTextTitle}>There is no todo here.</Text>
+                    <Text style={styles.emptyText}>Click the button and add new.</Text>
+                </View>
+            ) : (
+                <>
+                    <FlatList
+                        data={sortedTaskList}
+                        renderItem={({ item }) => <Task task={item} />}
+                        keyExtractor={(item) => item.id}
+                    />
+                </>
+            )}
         </View>
     );
 };

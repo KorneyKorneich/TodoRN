@@ -6,13 +6,13 @@ import { SignIn } from "src/screens/SignIn/SignIn.tsx";
 import { SignUp } from "src/screens/SignUp/SignUp.tsx";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StackParamList } from "src/shared/types/navigationTypes/navigationTypes.ts";
-import { FIREBASE_AUTH } from "src/shared/firebase/cloud";
 import { useAppDispatch, useAppSelector } from "src/shared/hooks/reduxHooks.ts";
 import { setIsLoading, setUser } from "src/shared/slices/UserSlice/userSlice.ts";
 import { useEffect, useState } from "react";
 import { LogOut } from "src/screens/LogOut/LogOut.tsx";
 import { OnboardingComponent } from "src/screens/Onboarding/OnboardingComponent/OnboardingComponent.tsx";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { FIREBASE_AUTH } from "src/shared/firebase/cloud";
 
 export const NavigationProvider = () => {
     const Stack = createNativeStackNavigator<StackParamList>();
@@ -33,6 +33,14 @@ export const NavigationProvider = () => {
     };
 
     useEffect(() => {
+        setIsLoading(true);
+        onAuthStateChanged(FIREBASE_AUTH, (u) => {
+            dispatch(setUser(u));
+            setIsLoading(false);
+        });
+    }, [user]);
+
+    useEffect(() => {
         checkOnboarding();
     }, []);
     return (
@@ -42,9 +50,6 @@ export const NavigationProvider = () => {
                     headerShown: false,
                 }}
             >
-                {!viewedOnboarding && (
-                    <Stack.Screen name={"Onboarding"} component={OnboardingComponent} />
-                )}
                 {user !== null ? (
                     <Stack.Group initialRouteName="Home">
                         <Stack.Screen name="Home" component={Home} />
@@ -54,6 +59,9 @@ export const NavigationProvider = () => {
                 ) : (
                     <>
                         <Stack.Group initialRouteName="SignUp">
+                            {!viewedOnboarding ? (
+                                <Stack.Screen name={"Onboarding"} component={OnboardingComponent} />
+                            ) : null}
                             {/*<Stack.Screen name="Welcome" component={Welcome} />*/}
                             <Stack.Screen name="SignIn" component={SignIn} />
                             <Stack.Screen name="SignUp" component={SignUp} />

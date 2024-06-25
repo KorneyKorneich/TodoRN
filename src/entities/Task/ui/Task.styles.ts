@@ -9,7 +9,6 @@ export default StyleSheet.create({
         paddingHorizontal: 12,
         borderRadius: 12,
         marginHorizontal: "5%",
-        backgroundColor: ColorGuide.PRIMARY_COLOR,
         marginBottom: 10,
         flexDirection: "column",
     },
@@ -30,5 +29,15 @@ export default StyleSheet.create({
         fontFamily: "Montserrat",
         fontSize: BodyFontSizes.BODY_2,
         color: ColorGuide.WHITE,
+    },
+    taskUrgent: {
+        backgroundColor: ColorGuide.ACCENT_COLOR,
+    },
+    taskNormal: {
+        backgroundColor: ColorGuide.PRIMARY_COLOR,
+    },
+    taskTitleContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
     },
 });
