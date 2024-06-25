@@ -26,7 +26,7 @@ export const NavigationProvider = () => {
                 setViewOnboarding(true);
             }
         } catch (err) {
-            console.error(err);
+            throw err;
         } finally {
             setIsLoading(false);
         }
@@ -63,8 +63,8 @@ export const NavigationProvider = () => {
                                 <Stack.Screen name={"Onboarding"} component={OnboardingComponent} />
                             ) : null}
                             {/*<Stack.Screen name="Welcome" component={Welcome} />*/}
-                            <Stack.Screen name="SignIn" component={SignIn} />
                             <Stack.Screen name="SignUp" component={SignUp} />
+                            <Stack.Screen name="SignIn" component={SignIn} />
                             {/*<Stack.Screen name="ChangePassword" component={ChangePassword} />*/}
                         </Stack.Group>
                     </>

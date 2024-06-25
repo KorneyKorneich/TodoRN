@@ -13,7 +13,7 @@ export default StyleSheet.create({
         flexDirection: "column",
     },
     taskTitle: {
-        fontWeight: "bold",
+        fontWeight: "600",
         fontSize: BodyFontSizes.BODY_1,
         fontFamily: "Montserrat",
         color: ColorGuide.WHITE,
@@ -23,7 +23,6 @@ export default StyleSheet.create({
         fontFamily: "Montserrat",
         fontSize: BodyFontSizes.BODY_2,
         color: ColorGuide.WHITE,
-        height: "60%",
     },
     taskDeadline: {
         fontFamily: "Montserrat",
@@ -39,5 +38,28 @@ export default StyleSheet.create({
     taskTitleContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
+    },
+    descriptionContainer: {
+        height: "60%",
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
+    todoChecked: {
+        alignSelf: "center",
+    },
+    done: {
+        backgroundColor: ColorGuide.GREY,
+    },
+    taskDescriptionDone: {
+        marginTop: "1%",
+        fontFamily: "Montserrat",
+        fontSize: BodyFontSizes.BODY_2,
+        color: ColorGuide.BLACK,
+    },
+    taskTitleDone: {
+        marginTop: "1%",
+        fontFamily: "Montserrat",
+        fontSize: BodyFontSizes.BODY_2,
+        color: ColorGuide.BLACK,
     },
 });

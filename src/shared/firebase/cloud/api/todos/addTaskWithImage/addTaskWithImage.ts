@@ -21,7 +21,6 @@ export const addTaskWithImage = async (
         };
         return await dispatch(addTaskToDB(taskWithImage)).unwrap();
     } catch (error) {
-        console.error("Error adding task with image:", error);
         throw new Error("Failed to add task with image");
     }
 };

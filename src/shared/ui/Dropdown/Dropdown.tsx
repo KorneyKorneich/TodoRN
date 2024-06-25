@@ -18,15 +18,14 @@ export const Dropdown = (props: DropdownProps) => {
                 >
                     <Text style={filter === "all" ? styles.selected : styles.unselected}>All</Text>
                 </TouchableOpacity>
-                {/*<TouchableOpacity*/}
-                {/*    style={styles.dropdownItem}*/}
-                {/*    onPress={() => handleFilterSelect("time")}*/}
-                {/*>*/}
-                {/*    <Text style={filter === "time" ? styles.selected : styles.unselected}>*/}
-                {/*        By Time*/}
-                {/*    </Text>*/}
-                {/*</TouchableOpacity>*/}
-                {/*todo: completed option*/}
+                <TouchableOpacity
+                    style={styles.dropdownItem}
+                    onPress={() => handleFilterSelect("done")}
+                >
+                    <Text style={filter === "done" ? styles.selected : styles.unselected}>
+                        Done
+                    </Text>
+                </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.dropdownItem}
                     onPress={() => handleFilterSelect("deadline")}

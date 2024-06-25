@@ -32,7 +32,7 @@ export const LogOut = () => {
                     {/*    <Text>p</Text>*/}
                     {/*</View>*/}
                 </View>
-                <AuthButton buttonTitle={"LOGOUT"} onPress={handleOnLogOut} />
+                <AuthButton buttonTitle={"LOG OUT"} onPress={handleOnLogOut} />
             </View>
         </>
     );

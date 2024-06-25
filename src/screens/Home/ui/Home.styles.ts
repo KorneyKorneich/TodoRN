@@ -7,7 +7,7 @@ export default StyleSheet.create({
         paddingHorizontal: 20,
         paddingTop: 10,
         paddingBottom: 20,
-        fontWeight: "bold",
-        fontFamily: "BebasNeueRegular",
+        fontWeight: "600",
+        fontFamily: "Bebas Neue Regular",
     },
 });

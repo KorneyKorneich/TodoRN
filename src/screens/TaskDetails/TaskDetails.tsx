@@ -35,6 +35,7 @@ export const TaskDetails = ({ route, navigation }: NavigationProps) => {
             description: "",
             timeStamp: 0,
             deadline: 0,
+            done: false,
         },
     };
     const [taskToEdit, setTaskToEdit] = useState<TaskConfigWithId>(taskData ?? initialTaskData);

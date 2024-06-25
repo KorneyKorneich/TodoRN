@@ -23,7 +23,7 @@ export default StyleSheet.create({
     },
     selected: {
         color: ColorGuide.ACCENT_COLOR,
-        fontWeight: "bold",
+        fontWeight: "600",
     },
     unselected: {
         color: ColorGuide.BLACK,

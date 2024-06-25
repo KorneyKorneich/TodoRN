@@ -21,9 +21,11 @@ export const TaskList = () => {
         dispatch(getTasksList());
     }, [dispatch]);
 
-    const filteredTasks = tasks.filter(() => {
-        if (filter === "all") return true;
-        if (filter === "deadline") return true;
+    const filteredTasks = tasks.filter((task) => {
+        if (filter === "all") return !task.data.done;
+        if (filter === "deadline") return !task.data.done;
+        if (filter === "done") return task.data.done;
+
         return false;
     });
 
@@ -34,6 +36,8 @@ export const TaskList = () => {
             const deadlineA = a.data.deadline ? new Date(a.data.deadline).getTime() : Infinity;
             const deadlineB = b.data.deadline ? new Date(b.data.deadline).getTime() : Infinity;
             return deadlineA - deadlineB;
+        } else if (filter === "done") {
+            return b.data.timeStamp - a.data.timeStamp;
         }
         return 0;
     });
@@ -68,11 +72,7 @@ export const TaskList = () => {
                     <Text style={styles.emptyText}>Click the button and add new.</Text>
                 </View>
             ) : (
-                <FlatList
-                    data={sortedTaskList}
-                    renderItem={({ item }) => <Task task={item} />}
-                    keyExtractor={(item) => item.id}
-                />
+                <FlatList data={sortedTaskList} renderItem={({ item }) => <Task task={item} />} />
             )}
         </View>
     );

@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { ColorGuide, HeadlineSizes } from "src/shared/types/styles/styleConstants.ts";
 
 export default StyleSheet.create({
@@ -12,7 +12,7 @@ export default StyleSheet.create({
     },
     headerTitle: {
         fontSize: HeadlineSizes.HEADLINE_4,
-        fontWeight: "bold",
+        fontWeight: "600",
         color: ColorGuide.PRIMARY_COLOR,
         fontFamily: "Bebas Neue Regular",
     },

@@ -30,7 +30,7 @@ export const OnboardingComponent = ({ navigation }: NavigationProps) => {
                 await AsyncStorage.setItem("@viewedOnboarding", "true");
                 navigation.navigate("SignIn");
             } catch (err) {
-                console.error(err);
+                throw err;
             }
         }
     };

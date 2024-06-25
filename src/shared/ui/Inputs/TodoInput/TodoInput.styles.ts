@@ -7,7 +7,7 @@ export default StyleSheet.create({
         borderWidth: 2,
         borderColor: ColorGuide.WHITE,
         borderRadius: 12,
-        paddingVertical: Platform.OS === "ios" ? "2%" : null,
+        paddingVertical: Platform.OS === "ios" ? "3%" : null,
     },
     default: {
         fontFamily: "Montserrat",

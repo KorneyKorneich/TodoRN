@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import {
     BodyFontSizes,
     ColorGuide,
@@ -25,6 +25,7 @@ export default StyleSheet.create({
     emptyText: {
         fontFamily: "Montserrat",
         fontSize: BodyFontSizes.BODY_2,
+        color: ColorGuide.BLACK,
     },
     filterIcon: {
         width: 30,

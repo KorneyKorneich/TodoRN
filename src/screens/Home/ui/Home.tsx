@@ -22,6 +22,7 @@ const taskToAddInitialState: TaskConfig = {
     deadline: null,
     timeStamp: 0,
     userId: null,
+    done: false,
 };
 
 export const Home = ({ navigation }: NavigationProps) => {

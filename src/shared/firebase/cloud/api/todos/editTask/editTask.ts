@@ -9,14 +9,12 @@ export const editTask = createAsyncThunk<TaskConfigWithId, TaskConfigWithId>(
     async (task: TaskConfigWithId) => {
         if (task.data.title && task.data.title.trim() !== "") {
             const docRef = doc(db, "Tasks", task.id);
-
             const storageRef = ref(storage, task.data.timeStamp.toString());
             if (task.data.img.downloadURL) {
                 const updatedImg = await swapFiles(
                     task.data.timeStamp.toString(),
                     task.data.img.downloadURL,
                 );
-                console.log(updatedImg);
                 task.data.img.downloadURL = updatedImg.downloadURL;
                 task.data.img.filename = updatedImg.filename;
             }
