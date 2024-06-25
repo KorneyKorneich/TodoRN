@@ -3,7 +3,6 @@ import {
     NavigationProps,
     Screens,
     TaskEditRouteParams,
-    useAppNavigation,
 } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { AppHeader } from "src/shared/ui/Headers/AppHeader.tsx";
 import styles from "./TaskDetails.styles.ts";
@@ -20,6 +19,7 @@ import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts
 import { editTask } from "src/shared/firebase/cloud/api/editTask/editTask.ts";
 import { useSelector } from "react-redux";
 import { getState } from "src/shared/slices/TodoSlice/selectors/getState.ts";
+import { useAppNavigation } from "src/shared/types/rootTypes/rootTypes.ts";
 
 export const TaskDetails = ({ route }: NavigationProps) => {
     const { taskId }: TaskEditRouteParams = route.params ?? "";
