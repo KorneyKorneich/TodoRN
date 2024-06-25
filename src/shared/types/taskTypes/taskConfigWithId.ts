@@ -1,8 +1,8 @@
 import { DocumentData } from "firebase/firestore";
 
 export interface TaskConfig {
-    title: string | null;
-    description: string | null;
+    title: string;
+    description: string;
     deadline: number | null;
     img: string | null;
     timeStamp: number;

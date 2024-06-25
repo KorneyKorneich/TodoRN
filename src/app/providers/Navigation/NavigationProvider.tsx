@@ -9,21 +9,9 @@ export const NavigationProvider = () => {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen
-                    name="Home"
-                    component={Home}
-                    options={{
-                        headerShown: false,
-                    }}
-                />
-                <Stack.Screen
-                    name="TaskDetails"
-                    component={TaskDetails}
-                    options={{
-                        headerShown: false,
-                    }}
-                />
+            <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="TaskDetails" component={TaskDetails} />
             </Stack.Navigator>
         </NavigationContainer>
     );

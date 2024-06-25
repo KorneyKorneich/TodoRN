@@ -50,8 +50,6 @@ export const TaskDetails = ({ route }: NavigationProps) => {
     };
 
     const handleOnEditConfirm = async () => {
-        console.log("here", taskToEdit.data.title);
-
         dispatch(editTask(taskToEdit));
         toggleModal();
     };
@@ -67,8 +65,8 @@ export const TaskDetails = ({ route }: NavigationProps) => {
         <>
             <AppHeader
                 buttons={[
-                    <TaskEditButton key={Math.random()} handleOnPress={handleModalOpen} />,
-                    <TaskDeleteButton key={Math.random()} handleOnPress={handleOnDelete} />,
+                    <TaskEditButton key={Date.now()} handleOnPress={handleModalOpen} />,
+                    <TaskDeleteButton key={Date.now() + 1} handleOnPress={handleOnDelete} />,
                 ]}
                 screen={Screens.TASK_DETAILS}
             />

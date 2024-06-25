@@ -13,7 +13,6 @@ interface ImageInputProps {
 
 export const ImageInput = ({ onImageChange, taskImg }: ImageInputProps) => {
     const [selectedImage, setSelectedImage] = useState<string | undefined>(taskImg ?? undefined);
-    const [pictureName, setPictureName] = useState<string | undefined>();
     const [isPictureVisible, setIsPictureVisible] = useState<boolean>(false);
 
     const ImagePicker = () => {
@@ -26,7 +25,6 @@ export const ImageInput = ({ onImageChange, taskImg }: ImageInputProps) => {
             if (response.assets) {
                 setSelectedImage(response.assets[0].uri);
                 onImageChange(response.assets[0].uri ?? "");
-                setPictureName(response.assets[0].fileName);
             }
         });
     };
@@ -41,18 +39,20 @@ export const ImageInput = ({ onImageChange, taskImg }: ImageInputProps) => {
 
     return (
         <>
-            <View style={[styles.container, pictureName ? styles.filledInput : styles.emptyInput]}>
+            <View
+                style={[styles.container, selectedImage ? styles.filledInput : styles.emptyInput]}
+            >
                 <View style={styles.imageInputContainer}>
                     <TextInput
                         placeholder={"Picture (optional)"}
-                        placeholderTextColor={pictureName ? ColorGuide.WHITE : ColorGuide.GREY}
+                        placeholderTextColor={selectedImage ? ColorGuide.WHITE : ColorGuide.GREY}
                         style={[
                             styles.default,
-                            pictureName !== "" ? styles.imageName : styles.emptyInput,
+                            selectedImage ? styles.imageName : styles.emptyInput,
                         ]}
-                        value={pictureName ? pictureName : selectedImage ? "Check out image" : ""}
+                        value={selectedImage ? "Check out image" : ""}
                         editable={false}
-                        onPressIn={pictureName !== "" ? togglePicture : undefined}
+                        onPressIn={selectedImage !== "" ? togglePicture : undefined}
                     />
                 </View>
                 <TouchableOpacity onPress={handleOnIconPress}>

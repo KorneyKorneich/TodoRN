@@ -11,8 +11,8 @@ import { TaskConfig } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
 
 const taskToAddInitialState: TaskConfig = {
-    description: null,
-    title: null,
+    description: "",
+    title: "",
     img: null,
     deadline: null,
     timeStamp: 0,
