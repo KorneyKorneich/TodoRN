@@ -26,4 +26,8 @@ export default StyleSheet.create({
         fontFamily: "Montserrat",
         fontSize: BodyFontSizes.BODY_2,
     },
+    filterIcon: {
+        width: 30,
+        height: 30,
+    },
 });
