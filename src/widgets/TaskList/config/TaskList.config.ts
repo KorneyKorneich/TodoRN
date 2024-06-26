@@ -1,5 +1,5 @@
-import { TaskConfig } from "entities/Task/config/task.config.ts"
+import { TaskConfig } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 
 export interface TaskListProps {
-    tasks: TaskConfig[]
+    tasks: TaskConfig[];
 }

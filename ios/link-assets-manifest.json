@@ -2,12 +2,12 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/shared/assets/fonts/Open-Sans.ttf",
-      "sha1": "ecdf1d58c0932a775c89b5ad48a7a0aaad66de4f"
+      "path": "src/shared/assets/fonts/Bebas Neue Regular.ttf",
+      "sha1": "8b3aaeb978f3cb5f575860774b50c332338563c1"
     },
     {
-      "path": "src/shared/assets/fonts/Playfair-Display.ttf",
-      "sha1": "2fcb048a917b7607887df262ee3742a50264c764"
+      "path": "src/shared/assets/fonts/Montserrat.ttf",
+      "sha1": "debd10e57fb07dd24187c41679885129449c1435"
     }
   ]
 }

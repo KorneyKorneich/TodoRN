@@ -49,8 +49,10 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Open-Sans.ttf</string>
-		<string>Playfair-Display.ttf</string>
+		<string>Bebas Neue Regular.ttf</string>
+		<string>Montserrat.ttf</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string/>
 </dict>
 </plist>

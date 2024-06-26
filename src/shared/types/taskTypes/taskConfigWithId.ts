@@ -1,10 +1,13 @@
 import { DocumentData } from "firebase/firestore";
+import { Nullable } from "src/shared/types/rootTypes/rootTypes.ts";
 
 export interface TaskConfig {
-    title: string | null;
-    description?: string | null;
+    title: string;
+    description: string;
+    deadline: Nullable<number>;
+    img: Nullable<string>;
+    timeStamp: number;
 }
-
 export interface TaskConfigWithId {
     id: string;
     data: TaskConfig;

@@ -7,7 +7,6 @@ require Pod::Executable.execute_command('node', ['-p',
 
 
 platform :ios, min_ios_version_supported
-use_modular_headers!
 prepare_react_native_project!
 
 linkage = ENV['USE_FRAMEWORKS']
@@ -18,6 +17,10 @@ end
 
 target 'TODO' do
   config = use_native_modules!
+
+  pod 'FirebaseCore', :modular_headers => true;
+  pod 'GoogleUtilities', :modular_headers => true;
+
 
   use_react_native!(
     :path => config[:reactNativePath],
