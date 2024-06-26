@@ -18,7 +18,7 @@ import styles from "./CustomModal.styles.ts";
 
 interface CustomModalProps {
     content: React.ReactNode;
-    buttonTitle?: string;
+    buttonTitle: string;
     handleOnPressButton: () => void;
     toggleModal: () => void;
 }

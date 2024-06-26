@@ -1,5 +1,5 @@
 export const formatDate = (date: Date) => {
-    const day = date.getUTCDate();
+    const day = date.getDate();
     const monthNames = [
         "January",
         "February",
@@ -14,8 +14,8 @@ export const formatDate = (date: Date) => {
         "November",
         "December",
     ];
-    const month = monthNames[date.getUTCMonth()];
-    const year = date.getUTCFullYear();
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
 
     return `${day} ${month} ${year}`;
 };

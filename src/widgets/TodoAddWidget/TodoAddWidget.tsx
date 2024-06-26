@@ -14,21 +14,8 @@ interface TodoAddWidgetProps {
 export const TodoAddWidget = (props: TodoAddWidgetProps) => {
     const { taskToAdd, setTaskToAdd } = props;
 
-    const handleOnTitleChange = (text: string): void => {
-        setTaskToAdd({ ...taskToAdd, title: text });
-    };
-    const handleOnDescriptionChange = (text: string): void => {
-        setTaskToAdd({ ...taskToAdd, description: text });
-    };
-    const handleOnDateChange = (date: number) => {
-        setTaskToAdd({ ...taskToAdd, deadline: date });
-    };
-
-    //Todo: fix - A non-serializable value was detected in the state, in the path: `tasks.tasks.2.data.deadline`. Value: 2024-07-13T17:17:00.000Z
-    // Take a look at the reducer(s) handling this action type: tasks/addTaskToDB/fulfilled.
-
-    const handleOnImageChange = (img: { downloadURL: string; filename: string }) => {
-        setTaskToAdd({ ...taskToAdd, img: img });
+    const handleChange = (field: keyof TaskConfig, value: string | number) => {
+        setTaskToAdd({ ...taskToAdd, [field]: value });
     };
 
     return (
@@ -36,15 +23,15 @@ export const TodoAddWidget = (props: TodoAddWidgetProps) => {
             <TodoInput
                 inputType={InputType.TITLE}
                 value={taskToAdd.title}
-                onChange={handleOnTitleChange}
+                onChange={(text) => handleChange("title", text)}
             />
             <TodoInput
                 inputType={InputType.DESCRIPTION}
                 value={taskToAdd.description}
-                onChange={handleOnDescriptionChange}
+                onChange={(text) => handleChange("description", text)}
             />
-            <DateInput onDateChange={handleOnDateChange} />
-            <ImageInput onImageChange={handleOnImageChange} />
+            <DateInput onDateChange={(date) => handleChange("deadline", date)} />
+            <ImageInput onImageChange={(img) => handleChange("img", img)} />
         </View>
     );
 };
