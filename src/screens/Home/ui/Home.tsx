@@ -1,3 +1,4 @@
+import styles from "./Home.styles.ts";
 import { useState } from "react";
 import { TaskList } from "src/widgets/TaskList/ui/TaskList.tsx";
 import { AppHeader } from "src/shared/ui/Headers/AppHeader.tsx";
@@ -9,8 +10,10 @@ import { TodoAddWidget } from "src/widgets/TodoAddWidget/TodoAddWidget.tsx";
 import { handleTodoAdd } from "src/screens/Home/model/Home.model.ts";
 import { TaskConfig } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { FIREBASE_AUTH } from "src/shared/firebase/cloud";
+import { getIsTasksLoading } from "src/shared/slices/TodoSlice/selectors/getIsTasksLoading.ts";
+import { useSelector } from "react-redux";
 
 const taskToAddInitialState: TaskConfig = {
     description: null,
@@ -41,6 +44,8 @@ export const Home = ({ navigation }: NavigationProps) => {
         toggleModal();
     };
 
+    const isLoading = useSelector(getIsTasksLoading);
+
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
     };
@@ -50,7 +55,7 @@ export const Home = ({ navigation }: NavigationProps) => {
     };
 
     return (
-        <>
+        <View style={styles.container}>
             <AppHeader
                 text={"TO DO LIST"}
                 buttons={[
@@ -70,6 +75,6 @@ export const Home = ({ navigation }: NavigationProps) => {
                     buttonTitle={"add todo"}
                 />
             )}
-        </>
+        </View>
     );
 };

@@ -7,7 +7,7 @@ import { SignUp } from "src/screens/SignUp/SignUp.tsx";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StackParamList } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { useAppDispatch, useAppSelector } from "src/shared/hooks/reduxHooks.ts";
-import { setIsLoading, setUser } from "src/shared/slices/UserSlice/userSlice.ts";
+import { setIsUserLoading, setUser } from "src/shared/slices/UserSlice/userSlice.ts";
 import { useEffect, useState } from "react";
 import { LogOut } from "src/screens/LogOut/LogOut.tsx";
 import { OnboardingComponent } from "src/screens/Onboarding/OnboardingComponent/OnboardingComponent.tsx";
@@ -28,15 +28,15 @@ export const NavigationProvider = () => {
         } catch (err) {
             throw err;
         } finally {
-            setIsLoading(false);
+            setIsUserLoading(false);
         }
     };
 
     useEffect(() => {
-        setIsLoading(true);
+        setIsUserLoading(true);
         onAuthStateChanged(FIREBASE_AUTH, (u) => {
             dispatch(setUser(u));
-            setIsLoading(false);
+            setIsUserLoading(false);
         });
     }, [user]);
 

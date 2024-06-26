@@ -24,10 +24,12 @@ export const SignIn = ({ navigation }: NavigationProps) => {
     const [errors, setErrors] = useState<ErrorConfig>({ noErrors: false });
 
     const handleEmailChange = (email: string) => {
+        setErrors({ ...errors, email: undefined });
         setUserInfo({ ...userInfo, email: email });
     };
 
     const handlePasswordChange = (password: string) => {
+        setErrors({ ...errors, password: undefined });
         setUserInfo({ ...userInfo, password: password });
     };
 
@@ -66,13 +68,16 @@ export const SignIn = ({ navigation }: NavigationProps) => {
     const handleSignIn = async () => {
         const isValid = validate();
         if (isValid) {
-            const errorMessage = await signIn({
-                email: userInfo.email!,
-                password: userInfo.password!,
-            });
-
-            if (errorMessage) {
-                setErrors((prevErrors) => ({ ...prevErrors, firebaseError: errorMessage }));
+            try {
+                await signIn({
+                    email: userInfo.email!,
+                    password: userInfo.password!,
+                });
+            } catch (err) {
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    firebaseError: typeof err === "string" ? err : "An error occurred",
+                }));
             }
         }
     };
@@ -84,35 +89,39 @@ export const SignIn = ({ navigation }: NavigationProps) => {
     return (
         <KeyboardAvoidingView behavior="position">
             <View style={styles.container}>
-                <View style={styles.logo}>
-                    <Union />
-                </View>
-                <View style={styles.signInForm}>
-                    {errors.firebaseError && (
-                        <Text style={styles.invalidInput}>{errors.firebaseError}</Text>
-                    )}
-                    <AppInput
-                        placeholder="Email"
-                        value={userInfo.email}
-                        setValue={handleEmailChange}
-                    />
-                    {errors.email && <Text style={styles.invalidInput}>{errors.email}</Text>}
-                    <PasswordInput
-                        placeholder="Password"
-                        value={userInfo.password}
-                        setValue={handlePasswordChange}
-                    />
-                    {errors.password && <Text style={styles.invalidInput}>{errors.password}</Text>}
-                </View>
-                <TouchableOpacity>
-                    <Text style={styles.text}>Forgot Password?</Text>
-                </TouchableOpacity>
-                <AuthButton onPress={handleSignIn} buttonTitle="SIGN IN" />
-                <View style={styles.toSignUpContainer}>
-                    <Text style={styles.text}>Don&apos;t have an account?</Text>
-                    <TouchableOpacity onPress={handleToSignUp}>
-                        <Text style={styles.toSignUp}>Sign Up</Text>
+                <View style={styles.content}>
+                    <View style={styles.logo}>
+                        <Union />
+                    </View>
+                    <View style={styles.signInForm}>
+                        {errors.firebaseError && (
+                            <Text style={styles.invalidInput}>{errors.firebaseError}</Text>
+                        )}
+                        <AppInput
+                            placeholder="Email"
+                            value={userInfo.email}
+                            setValue={handleEmailChange}
+                        />
+                        {errors.email && <Text style={styles.invalidInput}>{errors.email}</Text>}
+                        <PasswordInput
+                            placeholder="Password"
+                            value={userInfo.password}
+                            setValue={handlePasswordChange}
+                        />
+                        {errors.password && (
+                            <Text style={styles.invalidInput}>{errors.password}</Text>
+                        )}
+                    </View>
+                    <TouchableOpacity>
+                        <Text style={styles.text}>Forgot Password?</Text>
                     </TouchableOpacity>
+                    <AuthButton onPress={handleSignIn} buttonTitle="SIGN IN" />
+                    <View style={styles.toSignUpContainer}>
+                        <Text style={styles.text}>Don&apos;t have an account?</Text>
+                        <TouchableOpacity onPress={handleToSignUp}>
+                            <Text style={styles.toSignUp}>Sign Up</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         </KeyboardAvoidingView>

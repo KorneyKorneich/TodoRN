@@ -14,10 +14,10 @@ export const userSlice = createSlice({
         setUser: (state, action) => {
             state.userData = action.payload;
         },
-        setIsLoading: (state, action) => {
+        setIsUserLoading: (state, action) => {
             state.isLoading = action.payload;
         },
     },
 });
-export const { setUser, setIsLoading } = userSlice.actions;
+export const { setUser, setIsUserLoading } = userSlice.actions;
 export default userSlice.reducer;

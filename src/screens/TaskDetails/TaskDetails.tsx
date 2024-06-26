@@ -3,7 +3,6 @@ import {
     NavigationProps,
     Screens,
     TaskEditRouteParams,
-    useAppNavigation,
 } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { AppHeader } from "src/shared/ui/Headers/AppHeader.tsx";
 import styles from "./TaskDetails.styles.ts";
@@ -19,11 +18,11 @@ import { useState } from "react";
 import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { editTask } from "src/shared/firebase/cloud/api/todos/editTask/editTask.ts";
 import { useSelector } from "react-redux";
-import { getState } from "src/shared/slices/TodoSlice/selectors/getState.ts";
+import { getTasks } from "src/shared/slices/TodoSlice/selectors/getTasks.ts";
 
 export const TaskDetails = ({ route, navigation }: NavigationProps) => {
     const { taskId }: TaskEditRouteParams = route.params ?? "";
-    const taskData = useSelector(getState).tasks.tasks.find((el) => el.id === taskId);
+    const taskData = useSelector(getTasks).find((el) => el.id === taskId);
     const initialTaskData: TaskConfigWithId = taskData ?? {
         id: "",
         data: {
@@ -36,6 +35,7 @@ export const TaskDetails = ({ route, navigation }: NavigationProps) => {
             timeStamp: 0,
             deadline: 0,
             done: false,
+            userId: null,
         },
     };
     const [taskToEdit, setTaskToEdit] = useState<TaskConfigWithId>(taskData ?? initialTaskData);
@@ -67,7 +67,7 @@ export const TaskDetails = ({ route, navigation }: NavigationProps) => {
         setIsModalOpen(true);
     };
     return (
-        <>
+        <View style={styles.container}>
             <AppHeader
                 buttons={[
                     <TaskEditButton key={Math.random()} handleOnPress={handleModalOpen} />,
@@ -106,6 +106,6 @@ export const TaskDetails = ({ route, navigation }: NavigationProps) => {
                     buttonTitle={"UPDATE"}
                 />
             )}
-        </>
+        </View>
     );
 };

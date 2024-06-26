@@ -1,10 +1,5 @@
 import { StyleSheet } from "react-native";
-import {
-    BodyFontSizes,
-    ColorGuide,
-    HEIGHT,
-    WIDTH,
-} from "src/shared/types/styles/styleConstants.ts";
+import { BodyFontSizes, ColorGuide, HEIGHT } from "src/shared/types/styles/styleConstants.ts";
 
 export default StyleSheet.create({
     logo: {
@@ -18,11 +13,9 @@ export default StyleSheet.create({
         color: ColorGuide.ACCENT_COLOR,
     },
     container: {
-        flexDirection: "column",
-        justifyContent: "space-between",
-        height: HEIGHT * 0.89,
-        width: WIDTH * 0.9,
-        marginHorizontal: "auto",
+        height: "100%",
+        width: "100%",
+        backgroundColor: ColorGuide.WHITE,
     },
     signUpForm: {
         marginBottom: HEIGHT * 0.03,
@@ -46,5 +39,12 @@ export default StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         gap: 10,
+    },
+    content: {
+        flexDirection: "column",
+        justifyContent: "space-between",
+        width: "90%",
+        height: "100%",
+        marginHorizontal: "auto",
     },
 });

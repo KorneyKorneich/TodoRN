@@ -7,6 +7,11 @@ import {
 } from "src/shared/types/styles/styleConstants.ts";
 
 export default StyleSheet.create({
+    container: {
+        width: "100%",
+        height: "100%",
+        backgroundColor: ColorGuide.WHITE,
+    },
     task: {
         width: "90%",
         height: 120,

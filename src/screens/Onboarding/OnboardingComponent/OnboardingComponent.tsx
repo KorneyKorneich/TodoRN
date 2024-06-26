@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, View, Animated } from "react-native";
+import { FlatList, View, Animated, ViewToken } from "react-native";
 import { onboardingSlides as slides } from "src/screens/Onboarding/assets/OnboardingSlides.ts";
 import { useRef, useState } from "react";
 import { OnboardingItem } from "src/screens/Onboarding/OnboardingItem/OnboardingItem.tsx";
@@ -18,20 +18,16 @@ export const OnboardingComponent = ({ navigation }: NavigationProps) => {
         return <OnboardingItem item={item} />;
     };
 
-    const viewableItemsChanged = useRef(({ viewableItems }) => {
-        setCurrentIndex(viewableItems[0].index);
+    const viewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
+        setCurrentIndex(viewableItems[0].index || 0);
     }).current;
 
     const scrollTo = async () => {
         if (currentIndex < slides.length - 1) {
             slidesRef.current?.scrollToIndex({ index: currentIndex + 1 });
         } else {
-            try {
-                await AsyncStorage.setItem("@viewedOnboarding", "true");
-                navigation.navigate("SignIn");
-            } catch (err) {
-                throw err;
-            }
+            await AsyncStorage.setItem("@viewedOnboarding", "true");
+            navigation.navigate("SignUp");
         }
     };
 

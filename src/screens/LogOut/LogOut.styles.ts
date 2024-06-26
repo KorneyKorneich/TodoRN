@@ -1,9 +1,5 @@
 import { StyleSheet } from "react-native";
-import {
-    BodyFontSizes,
-    ColorGuide,
-    HeadlineSizes,
-} from "src/shared/types/styles/styleConstants.ts";
+import { BodyFontSizes, ColorGuide } from "src/shared/types/styles/styleConstants.ts";
 
 export default StyleSheet.create({
     logo: {
@@ -11,11 +7,9 @@ export default StyleSheet.create({
         width: "100%",
     },
     rootContainer: {
-        marginHorizontal: "auto",
-        width: "90%",
-        height: "90%",
-        justifyContent: "space-between",
-        flexDirection: "column",
+        height: "100%",
+        width: "100%",
+        backgroundColor: ColorGuide.WHITE,
     },
     userInfo: {},
     textContainer: {
@@ -35,5 +29,12 @@ export default StyleSheet.create({
         color: ColorGuide.PRIMARY_COLOR,
         fontFamily: "Montserrat",
         fontSize: BodyFontSizes.BODY_2,
+    },
+    contentContainer: {
+        marginHorizontal: "auto",
+        width: "90%",
+        height: "90%",
+        justifyContent: "space-between",
+        flexDirection: "column",
     },
 });

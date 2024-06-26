@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
-import { getState } from "src/shared/slices/TodoSlice/selectors/getState.ts";
 import styles from "./TaskList.styles.ts";
 import { Task } from "src/entities/Task";
-import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
+import { useAppDispatch, useAppSelector } from "src/shared/hooks/reduxHooks.ts";
 import { getTasksList } from "src/shared/firebase/cloud/api/todos/getTaskList/getTasksList.ts";
 import { ArticleBar } from "src/shared/ui/ArticleTitle/ArticleTitle.tsx";
 import { Filter } from "src/shared/assets/icons/filter.tsx";
 import { ColorGuide } from "src/shared/types/styles/styleConstants.ts";
 import { Dropdown } from "src/shared/ui/Dropdown/Dropdown.tsx";
+import { getTasks } from "src/shared/slices/TodoSlice/selectors/getTasks.ts";
+import { getIsTasksLoading } from "src/shared/slices/TodoSlice/selectors/getIsTasksLoading.ts";
 
 export const TaskList = () => {
     const [filterVisible, setFilterVisible] = useState<boolean>(false);
-    const [filter, setFilter] = useState("all"); // Add filter state
-    const tasks = useSelector(getState).tasks.tasks;
+    const [filter, setFilter] = useState<string>("all"); // Add filter state
+    const tasks = useSelector(getTasks);
+    const isLoading = useAppSelector(getIsTasksLoading); // Loading state
+
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -66,10 +69,12 @@ export const TaskList = () => {
                 ]}
             />
             {filterVisible && <Dropdown filter={filter} handleFilterSelect={handleFilterSelect} />}
-            {tasks.length === 0 ? (
+            {isLoading ? (
+                <ActivityIndicator size="large" style={styles.loader} />
+            ) : sortedTaskList.length === 0 ? (
                 <View style={styles.emptyContainer}>
-                    <Text style={styles.emptyTextTitle}>There is no todo here.</Text>
-                    <Text style={styles.emptyText}>Click the button and add new.</Text>
+                    <Text style={styles.emptyTextTitle}>There are no todos here.</Text>
+                    <Text style={styles.emptyText}>Click the button to add new ones.</Text>
                 </View>
             ) : (
                 <FlatList data={sortedTaskList} renderItem={({ item }) => <Task task={item} />} />

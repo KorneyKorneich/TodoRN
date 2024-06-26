@@ -1,8 +1,11 @@
-import { Platform, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { ColorGuide, HeadlineSizes } from "src/shared/types/styles/styleConstants.ts";
 
 export default StyleSheet.create({
     headerContainer: {
+        backgroundColor: ColorGuide.WHITE,
+    },
+    content: {
         position: "static",
         marginVertical: 10,
         marginHorizontal: "5%",

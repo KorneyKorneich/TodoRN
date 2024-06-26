@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FIREBASE_AUTH } from "src/shared/firebase/cloud";
-import { setUser } from "src/shared/slices/UserSlice/userSlice.ts";
+import { setIsUserLoading, setUser } from "src/shared/slices/UserSlice/userSlice.ts";
 
 interface userSignIn {
     email: string;
@@ -9,7 +9,7 @@ interface userSignIn {
 
 export const signIn = async (user: userSignIn) => {
     const { email, password } = user;
-
+    setIsUserLoading(true);
     await signInWithEmailAndPassword(FIREBASE_AUTH, email, password)
         .then(({ user }) => {
             setUser({ email: user.email });
@@ -17,6 +17,7 @@ export const signIn = async (user: userSignIn) => {
         .catch((err) => {
             throw err.code;
         });
+    setIsUserLoading(false);
 
     return;
 };

@@ -1,16 +1,12 @@
 import { StyleSheet } from "react-native";
-import {
-    BodyFontSizes,
-    ColorGuide,
-    HeadlineSizes,
-} from "src/shared/types/styles/styleConstants.ts";
+import { ColorGuide, HeadlineSizes } from "src/shared/types/styles/styleConstants.ts";
 
 export default StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        color: ColorGuide.WHITE,
+        backgroundColor: ColorGuide.WHITE,
     },
     image: {
         flex: 0.7,

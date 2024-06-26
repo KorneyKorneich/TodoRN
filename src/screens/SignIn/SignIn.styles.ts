@@ -1,11 +1,5 @@
 import { StyleSheet } from "react-native";
-import {
-    BodyFontSizes,
-    ColorGuide,
-    HeadlineSizes,
-    HEIGHT,
-    WIDTH,
-} from "src/shared/types/styles/styleConstants.ts";
+import { BodyFontSizes, ColorGuide } from "src/shared/types/styles/styleConstants.ts";
 
 export default StyleSheet.create({
     logo: {
@@ -15,11 +9,9 @@ export default StyleSheet.create({
         marginVertical: "auto",
     },
     container: {
-        flexDirection: "column",
-        justifyContent: "space-between",
-        height: HEIGHT * 0.89,
-        width: WIDTH * 0.9,
-        marginHorizontal: "auto",
+        height: "100%",
+        width: "100%",
+        backgroundColor: ColorGuide.WHITE,
     },
     signInForm: {
         gap: 10,
@@ -46,5 +38,12 @@ export default StyleSheet.create({
     invalidInput: {
         fontFamily: "Montserrat",
         color: ColorGuide.ACCENT_COLOR,
+    },
+    content: {
+        flexDirection: "column",
+        justifyContent: "space-between",
+        height: "100%",
+        width: "90%",
+        marginHorizontal: "auto",
     },
 });

@@ -18,14 +18,16 @@ export const AppHeader = ({ text, buttons, screen }: HeaderProps) => {
     }, []);
     return (
         <View style={styles.headerContainer}>
-            {screen === Screens.HOME ? (
-                <Text style={styles.headerTitle}>{text}</Text>
-            ) : (
-                <TouchableOpacity onPress={handleGoBack}>
-                    <ChevronLeft color={ColorGuide.BLACK} />
-                </TouchableOpacity>
-            )}
-            <View style={styles.navBar}>{buttons}</View>
+            <View style={styles.content}>
+                {screen === Screens.HOME ? (
+                    <Text style={styles.headerTitle}>{text}</Text>
+                ) : (
+                    <TouchableOpacity onPress={handleGoBack}>
+                        <ChevronLeft color={ColorGuide.BLACK} />
+                    </TouchableOpacity>
+                )}
+                <View style={styles.navBar}>{buttons}</View>
+            </View>
         </View>
     );
 };

@@ -8,7 +8,6 @@ import { UserSignUpConfig } from "src/shared/types/user/userConfig.ts";
 import { AuthButton } from "src/shared/ui/Buttons/AuthButton/AuthButton.tsx";
 import { NavigationProps } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { createUser } from "src/shared/firebase/cloud/api/user/createUser/createUser.ts";
-import { getFirebaseAuthErrorMessage } from "src/shared/helpers/getAuthError.ts";
 
 interface ErrorConfig {
     password?: string;
@@ -87,15 +86,16 @@ export const SignUp = ({ navigation }: NavigationProps) => {
     const handleSignUp = async () => {
         const isValid = validate();
         if (isValid) {
-            const errorMessage = await createUser({
-                email: userInfoSignUp.email!,
-                password: userInfoSignUp.password!,
-            });
-
-            if (errorMessage) {
+            try {
+                const errorMessage = await createUser({
+                    email: userInfoSignUp.email!,
+                    password: userInfoSignUp.password!,
+                });
+            } catch (err) {
+                console.error("Error signing up:", err);
                 setErrors((prevErrors) => ({
                     ...prevErrors,
-                    firebaseError: getFirebaseAuthErrorMessage(errorMessage),
+                    firebaseError: "An error occurred while signing up.",
                 }));
             }
         }
@@ -106,9 +106,9 @@ export const SignUp = ({ navigation }: NavigationProps) => {
     };
 
     return (
-        <>
-            <KeyboardAvoidingView behavior="position">
-                <View style={styles.container}>
+        <KeyboardAvoidingView behavior="position">
+            <View style={styles.container}>
+                <View style={styles.content}>
                     <View style={styles.logo}>
                         <Union />
                     </View>
@@ -150,7 +150,7 @@ export const SignUp = ({ navigation }: NavigationProps) => {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </KeyboardAvoidingView>
-        </>
+            </View>
+        </KeyboardAvoidingView>
     );
 };

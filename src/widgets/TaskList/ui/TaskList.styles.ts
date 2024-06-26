@@ -1,4 +1,4 @@
-import { Platform, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import {
     BodyFontSizes,
     ColorGuide,
@@ -30,5 +30,9 @@ export default StyleSheet.create({
     filterIcon: {
         width: 30,
         height: 30,
+    },
+    loader: {
+        marginHorizontal: "auto",
+        marginVertical: "auto",
     },
 });
