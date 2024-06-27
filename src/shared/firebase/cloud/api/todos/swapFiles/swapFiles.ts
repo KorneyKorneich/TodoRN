@@ -31,7 +31,6 @@ export const swapFiles = async (timestamp: string, fileUrl: string) => {
             filename: newFileRef.name,
         };
     } catch (error) {
-        console.error("Error swapping files: ", error);
         throw error;
     }
 };
