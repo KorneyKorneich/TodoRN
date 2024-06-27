@@ -3,7 +3,7 @@ export const onboardingSlides = [
         id: 1,
         title: "Welcome to Todo List!",
         description:
-            "Stay organized and boost your productivity with TodoMaster, the ultimate task management app. Let's get started!",
+            "Stay organized and boost your productivity with Todo List, the ultimate task management app. Let's get started!",
         image: require("../assets/onboarding_img/reminder.png"),
     },
     {
