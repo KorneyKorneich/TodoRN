@@ -23,8 +23,8 @@ export const editTask = createAsyncThunk<TaskConfigWithId, TaskConfigWithId>(
 
             const updateData = {
                 ...task.data,
-                deadline: task.data.deadline || null,
-                img: task.data.img || null,
+                deadline: task.data.deadline,
+                img: task.data.img,
             };
             await updateDoc(docRef, updateData);
             return task;

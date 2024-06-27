@@ -5,9 +5,9 @@ import { InputType } from "src/shared/types/uiConst/uiConst.ts";
 import React from "react";
 
 interface TodoTitleInputProps {
-    value: string | null | undefined;
+    value: string;
     onChange: (text: string) => void;
-    inputType?: InputType | undefined;
+    inputType?: InputType;
 }
 
 export const TodoInput = (props: TodoTitleInputProps) => {
@@ -37,7 +37,7 @@ export const TodoInput = (props: TodoTitleInputProps) => {
                     placeholder={inputType}
                     placeholderTextColor={ColorGuide.WHITE}
                     style={[styles.default, getInputTypeStyles()]}
-                    value={value === null ? "" : value}
+                    value={value}
                     onChangeText={handleOnChange}
                 />
             ) : (
@@ -45,7 +45,7 @@ export const TodoInput = (props: TodoTitleInputProps) => {
                     placeholder={inputType}
                     placeholderTextColor={ColorGuide.WHITE}
                     style={[styles.default, getInputTypeStyles()]}
-                    value={value === null || undefined ? "" : value}
+                    value={value}
                     onChangeText={handleOnChange}
                     multiline={true}
                     numberOfLines={1000}

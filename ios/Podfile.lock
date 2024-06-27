@@ -1262,11 +1262,7 @@ PODS:
   - RNFBApp (20.1.0):
     - Firebase/CoreOnly (= 10.27.0)
     - React-Core
-  - RNFBAuth (20.1.0):
-    - Firebase/Auth (= 10.27.0)
-    - React-Core
-    - RNFBApp
-  - RNGestureHandler (2.17.0):
+  - RNGestureHandler (2.16.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1621,10 +1617,9 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
   RNDateTimePicker: 430174392d275f0ffefb627d04f0f8677f667fed
   RNFBApp: 1ae7462cddf74a49df206d3418bc0170f8fa53e5
-  RNFBAuth: 9be3cd8b0f9083b06da34d52c146e66605d2ee74
-  RNGestureHandler: 45a92e7dca8326094bf59160576692ab271182d3
-  RNReanimated: f9192536fa8a312c737eaf15c905f78831193ef1
-  RNScreens: 5aeecbb09aa7285379b6e9f3c8a3c859bb16401c
+  RNGestureHandler: 2282cfbcf86c360d29f44ace393203afd5c6cff7
+  RNReanimated: 8978449b2a511388ea71faf1e66f669134e87658
+  RNScreens: b32a9ff15bea7fcdbe5dff6477bc503f792b1208
   RNSVG: a48668fd382115bc89761ce291a81c4ca5f2fd2e
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 2f71ecf38d934aecb366e686278102a51679c308

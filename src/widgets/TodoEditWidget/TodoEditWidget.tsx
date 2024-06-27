@@ -1,5 +1,5 @@
 import styles from "./TodoEditWidget.styles.ts";
-import { TaskConfigWithId, TodoImgConfig } from "src/shared/types/taskTypes/taskConfigWithId.ts";
+import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { View } from "react-native";
 import { TodoInput } from "src/shared/ui/Inputs/TodoInput/TodoInput.tsx";
 import { InputType } from "src/shared/types/uiConst/uiConst.ts";
@@ -14,18 +14,8 @@ interface TodoEditWidget {
 export const TodoEditWidget = (props: TodoEditWidget) => {
     const { taskToEdit, setTaskToEdit } = props;
 
-    const handleOnTitleChange = (text: string): void => {
-        setTaskToEdit({ ...taskToEdit, data: { ...taskToEdit.data, title: text } });
-    };
-    const handleOnDescriptionChange = (text: string): void => {
-        setTaskToEdit({ ...taskToEdit, data: { ...taskToEdit.data, description: text } });
-    };
-    const handleOnDateChange = (date: number) => {
-        setTaskToEdit({ ...taskToEdit, data: { ...taskToEdit.data, deadline: date } });
-    };
-
-    const handleOnImageChange = (img: TodoImgConfig) => {
-        setTaskToEdit({ ...taskToEdit, data: { ...taskToEdit.data, img: img } });
+    const handleChange = (field: keyof TaskConfigWithId["data"], value: string | number) => {
+        setTaskToEdit({ ...taskToEdit, data: { ...taskToEdit.data, [field]: value } });
     };
 
     return (
@@ -33,18 +23,21 @@ export const TodoEditWidget = (props: TodoEditWidget) => {
             <TodoInput
                 inputType={InputType.TITLE}
                 value={taskToEdit.data.title}
-                onChange={handleOnTitleChange}
+                onChange={(text) => handleChange("title", text)}
             />
             <TodoInput
                 inputType={InputType.DESCRIPTION}
                 value={taskToEdit.data.description}
-                onChange={handleOnDescriptionChange}
+                onChange={(text) => handleChange("description", text)}
             />
             <DateInput
-                onDateChange={handleOnDateChange}
+                onDateChange={(date) => handleChange("deadline", date)}
                 taskDate={taskToEdit.data.deadline ?? undefined}
             />
-            <ImageInput onImageChange={handleOnImageChange} taskImg={taskToEdit.data.img} />
+            <ImageInput
+                onImageChange={(img) => handleChange("img", img)}
+                taskImg={taskToEdit.data.img ?? undefined}
+            />
         </View>
     );
 };

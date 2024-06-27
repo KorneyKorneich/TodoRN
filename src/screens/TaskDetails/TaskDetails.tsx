@@ -21,25 +21,24 @@ import { editTask } from "src/shared/firebase/cloud/api/todos/editTask/editTask.
 import { useSelector } from "react-redux";
 import { getState } from "src/shared/slices/TodoSlice/selectors/getState.ts";
 
-export const TaskDetails = ({ route, navigation }: NavigationProps) => {
+export const TaskDetails = ({ route }: NavigationProps) => {
     const { taskId }: TaskEditRouteParams = route.params ?? "";
     const taskData = useSelector(getState).tasks.tasks.find((el) => el.id === taskId);
     const initialTaskData: TaskConfigWithId = taskData ?? {
         id: "",
         data: {
             title: "",
-            img: {
-                downloadURL: "",
-                filename: "",
-            },
+            img: "",
             description: "",
             timeStamp: 0,
             deadline: 0,
+            userId: null
         },
     };
     const [taskToEdit, setTaskToEdit] = useState<TaskConfigWithId>(taskData ?? initialTaskData);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
 
     if (!taskData?.id) return navigation.goBack();
@@ -69,8 +68,8 @@ export const TaskDetails = ({ route, navigation }: NavigationProps) => {
         <>
             <AppHeader
                 buttons={[
-                    <TaskEditButton key={Math.random()} handleOnPress={handleModalOpen} />,
-                    <TaskDeleteButton key={Math.random()} handleOnPress={handleOnDelete} />,
+                    <TaskEditButton key={Date.now()} handleOnPress={handleModalOpen} />,
+                    <TaskDeleteButton key={Date.now() + 1} handleOnPress={handleOnDelete} />,
                 ]}
                 screen={Screens.TASK_DETAILS}
             />
@@ -81,11 +80,8 @@ export const TaskDetails = ({ route, navigation }: NavigationProps) => {
                     )}
                 </View>
                 <View>
-                    {taskData.data.img.downloadURL && (
-                        <Image
-                            style={styles.taskImageContainer}
-                            src={taskData.data.img.downloadURL}
-                        />
+                    {taskData.data.img && (
+                        <Image style={styles.taskImageContainer} src={taskData.data.img} />
                     )}
                 </View>
                 <View>

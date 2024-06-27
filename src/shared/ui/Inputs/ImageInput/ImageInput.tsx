@@ -2,27 +2,18 @@ import styles from "./ImageInput.styles.ts";
 import { Image, Modal, SafeAreaView, TextInput, TouchableOpacity, View } from "react-native";
 import { ColorGuide } from "src/shared/types/styles/styleConstants.ts";
 import { ImageLibraryOptions, launchImageLibrary } from "react-native-image-picker";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ImageComponent } from "src/shared/assets/icons/ImageComponent.tsx";
 import { ModalButton } from "src/shared/ui/Buttons/ModalButton/ModalButton.tsx";
-import { TodoImgConfig } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 
 interface ImageInputProps {
-    onImageChange: (image: { downloadURL: string; filename: string }) => void;
-    taskImg?: TodoImgConfig;
+    onImageChange: (image: string) => void;
+    taskImg?: string;
 }
 
 export const ImageInput = ({ onImageChange, taskImg }: ImageInputProps) => {
-    const [selectedImage, setSelectedImage] = useState<string>("");
-    const [pictureName, setPictureName] = useState<string>("");
+    const [selectedImage, setSelectedImage] = useState<string | undefined>(taskImg ?? undefined);
     const [isPictureVisible, setIsPictureVisible] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (taskImg) {
-            setSelectedImage(taskImg.downloadURL ?? "");
-            setPictureName(taskImg.filename ?? "");
-        }
-    }, [taskImg]);
 
     const ImagePicker = () => {
         const options: ImageLibraryOptions = {
@@ -32,12 +23,8 @@ export const ImageInput = ({ onImageChange, taskImg }: ImageInputProps) => {
         };
         launchImageLibrary(options, (response) => {
             if (response.assets) {
-                setSelectedImage(response.assets[0].uri ?? "");
-                onImageChange({
-                    downloadURL: response.assets[0].uri ?? "",
-                    filename: response.assets[0].fileName ?? "",
-                });
-                setPictureName(response.assets[0].fileName ?? "");
+                setSelectedImage(response.assets[0].uri);
+                onImageChange(response.assets[0].uri ?? "");
             }
         });
     };
@@ -52,18 +39,20 @@ export const ImageInput = ({ onImageChange, taskImg }: ImageInputProps) => {
 
     return (
         <>
-            <View style={[styles.container, pictureName ? styles.filledInput : styles.emptyInput]}>
+            <View
+                style={[styles.container, selectedImage ? styles.filledInput : styles.emptyInput]}
+            >
                 <View style={styles.imageInputContainer}>
                     <TextInput
                         placeholder={"Picture (optional)"}
-                        placeholderTextColor={pictureName ? ColorGuide.WHITE : ColorGuide.GREY}
+                        placeholderTextColor={selectedImage ? ColorGuide.WHITE : ColorGuide.GREY}
                         style={[
                             styles.default,
-                            pictureName !== "" ? styles.imageName : styles.emptyInput,
+                            selectedImage ? styles.imageName : styles.emptyInput,
                         ]}
-                        value={pictureName || (selectedImage ? "Check out image" : "")}
+                        value={selectedImage ? "Check out image" : ""}
                         editable={false}
-                        onPressIn={pictureName ? togglePicture : undefined}
+                        onPressIn={selectedImage !== "" ? togglePicture : undefined}
                     />
                 </View>
                 <TouchableOpacity onPress={handleOnIconPress}>
