@@ -9,7 +9,7 @@ import { StackParamList } from "src/shared/types/navigationTypes/navigationTypes
 import { FIREBASE_AUTH } from "src/shared/firebase/cloud";
 import { useAppDispatch, useAppSelector } from "src/shared/hooks/reduxHooks.ts";
 import { setUser } from "src/shared/slices/UserSlice/userSlice.ts";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { LogOut } from "src/screens/LogOut/LogOut.tsx";
 
 export const NavigationProvider = () => {

@@ -1,8 +1,9 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import styles from "./AppHeader.styles.ts";
-import { Screens, useAppNavigation } from "src/shared/types/navigationTypes/navigationTypes.ts";
+import { Screens } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import ChevronLeft from "src/shared/assets/icons/chevron-left.svg";
 import { ReactNode, useCallback } from "react";
+import { useAppNavigation } from "src/shared/types/rootTypes/rootTypes.ts";
 
 interface HeaderProps {
     text?: string;

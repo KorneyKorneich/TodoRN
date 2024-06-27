@@ -15,10 +15,7 @@ import { FIREBASE_AUTH } from "src/shared/firebase/cloud";
 const taskToAddInitialState: TaskConfig = {
     description: null,
     title: null,
-    img: {
-        downloadURL: null,
-        filename: null,
-    },
+    img: null,
     deadline: null,
     timeStamp: 0,
     userId: null,

@@ -3,7 +3,6 @@ import {
     NavigationProps,
     Screens,
     TaskEditRouteParams,
-    useAppNavigation,
 } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { AppHeader } from "src/shared/ui/Headers/AppHeader.tsx";
 import styles from "./TaskDetails.styles.ts";
@@ -28,10 +27,7 @@ export const TaskDetails = ({ route, navigation }: NavigationProps) => {
         id: "",
         data: {
             title: "",
-            img: {
-                downloadURL: "",
-                filename: "",
-            },
+            img: "",
             description: "",
             timeStamp: 0,
             deadline: 0,
@@ -47,9 +43,7 @@ export const TaskDetails = ({ route, navigation }: NavigationProps) => {
     const timeStamp = new Date(taskData.data.timeStamp);
 
     const handleOnDelete = () => {
-        dispatch(
-            deleteTask({ taskId: taskData.id, timestamp: taskData.data.timeStamp.toString() }),
-        );
+        dispatch(deleteTask(taskData.id));
         navigation.goBack();
     };
 
@@ -69,8 +63,8 @@ export const TaskDetails = ({ route, navigation }: NavigationProps) => {
         <>
             <AppHeader
                 buttons={[
-                    <TaskEditButton key={Math.random()} handleOnPress={handleModalOpen} />,
-                    <TaskDeleteButton key={Math.random()} handleOnPress={handleOnDelete} />,
+                    <TaskEditButton key={Date.now()} handleOnPress={handleModalOpen} />,
+                    <TaskDeleteButton key={Date.now() + 1} handleOnPress={handleOnDelete} />,
                 ]}
                 screen={Screens.TASK_DETAILS}
             />
@@ -81,11 +75,8 @@ export const TaskDetails = ({ route, navigation }: NavigationProps) => {
                     )}
                 </View>
                 <View>
-                    {taskData.data.img.downloadURL && (
-                        <Image
-                            style={styles.taskImageContainer}
-                            src={taskData.data.img.downloadURL}
-                        />
+                    {taskData.data.img && (
+                        <Image style={styles.taskImageContainer} src={taskData.data.img} />
                     )}
                 </View>
                 <View>
