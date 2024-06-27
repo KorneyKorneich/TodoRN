@@ -3,9 +3,10 @@ import { TextInput, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
 import { ColorGuide } from "src/shared/types/styles/styleConstants.ts";
 import { SecureIconComponent } from "src/shared/assets/icons/SecureIconComponent.tsx";
+import { Nullable } from "src/shared/types/rootTypes/rootTypes.ts";
 
 interface PasswordInputProps {
-    value: string | null;
+    value: Nullable<string>;
     setValue: (value: string) => void;
     placeholder?: string;
 }

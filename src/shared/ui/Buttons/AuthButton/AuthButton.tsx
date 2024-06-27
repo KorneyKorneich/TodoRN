@@ -2,7 +2,7 @@ import styles from "./AuthButton.styles.ts";
 import { Text, TouchableOpacity } from "react-native";
 
 interface AuthButtonProps {
-    buttonTitle?: string;
+    buttonTitle: string;
     onPress: () => void;
 }
 

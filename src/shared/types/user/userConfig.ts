@@ -1,12 +1,14 @@
+import { Nullable } from "src/shared/types/rootTypes/rootTypes.ts";
+
 export interface UserSignInConfig {
-    email: string | null;
-    password: string | null;
+    email: Nullable<string>;
+    password: Nullable<string>;
 }
 
 export interface UserSignUpConfig {
-    email: string | null;
-    password: string | null;
-    repeatPassword: string | null;
+    email: Nullable<string>;
+    password: Nullable<string>;
+    repeatPassword: Nullable<string>;
 }
 
 export interface UserConfig {

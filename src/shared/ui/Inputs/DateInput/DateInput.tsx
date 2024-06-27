@@ -5,6 +5,7 @@ import { TextInput, TouchableOpacity, View } from "react-native";
 import { ColorGuide } from "src/shared/types/styles/styleConstants.ts";
 import CalendarIcon from "src/shared/ui/Buttons/CalendarButton/Calendar.tsx";
 import { formatDate } from "src/shared/helpers/formatDate.ts";
+import { Nullable } from "src/shared/types/rootTypes/rootTypes.ts";
 
 interface DateInputProps {
     onDateChange: (date: number) => void;
@@ -15,7 +16,9 @@ export const DateInput = (props: DateInputProps) => {
     const { onDateChange, taskDate } = props;
 
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-    const [dateValue, setDateValue] = useState<Date | null>(taskDate ? new Date(taskDate) : null);
+    const [dateValue, setDateValue] = useState<Nullable<Date>>(
+        taskDate ? new Date(taskDate) : null,
+    );
 
     const toggleDatePicker = () => {
         setDatePickerVisibility(!isDatePickerVisible);

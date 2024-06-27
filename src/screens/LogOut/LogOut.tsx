@@ -16,7 +16,7 @@ export const LogOut = () => {
     const userInfo = useAppSelector((state) => state.user.userData);
     return (
         <>
-            <AppHeader text={"TO DO LIST"} buttons={[]} screen={Screens.LOGOUT} />
+            <AppHeader text={"TO DO LIST"} screen={Screens.LOGOUT} />
             <View style={styles.rootContainer}>
                 <View style={styles.logo}>
                     <Illustration />

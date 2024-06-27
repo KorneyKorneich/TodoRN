@@ -1,8 +1,8 @@
 import { UserConfig } from "src/shared/types/user/userConfig.ts";
-import { createSlice } from "@reduxjs/toolkit";
+import { Nullable } from "src/shared/types/rootTypes/rootTypes.ts";
 
 export interface UserSliceConfig {
-    userData: UserConfig | null;
+    userData: Nullable<UserConfig>;
     isLoading: boolean;
     isError: boolean;
 }

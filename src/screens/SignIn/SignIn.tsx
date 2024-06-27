@@ -8,7 +8,7 @@ import { UserSignInConfig } from "src/shared/types/user/userConfig.ts";
 import { AuthButton } from "src/shared/ui/Buttons/AuthButton/AuthButton.tsx";
 import { NavigationProps } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { signIn } from "src/shared/firebase/cloud/api/user/signIn/signIn.ts";
-import { getFirebaseAuthErrorMessage } from "src/shared/helpers/getAuthError.ts";
+import { EMAIL_REGEX } from "src/shared/consts/const.ts";
 
 interface ErrorConfig {
     password?: string;
@@ -40,8 +40,6 @@ export const SignIn = ({ navigation }: NavigationProps) => {
             password: "Password is required",
         };
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         Object.keys(requiredFields).forEach((field) => {
             const key = field as keyof UserSignInConfig;
             if (!userInfo[key]) {
@@ -55,7 +53,7 @@ export const SignIn = ({ navigation }: NavigationProps) => {
             newErrors.noErrors = false;
         }
 
-        if (userInfo.email && !emailRegex.test(userInfo.email)) {
+        if (userInfo.email && !EMAIL_REGEX.test(userInfo.email)) {
             newErrors.email = "Invalid email format";
             newErrors.noErrors = false;
         }

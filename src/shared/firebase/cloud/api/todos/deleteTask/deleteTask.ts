@@ -2,10 +2,11 @@ import { db, ref, storage } from "src/shared/firebase/cloud";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { deleteDoc, doc } from "firebase/firestore";
 import { deleteObject } from "firebase/storage";
+import { Nullable } from "src/shared/types/rootTypes/rootTypes.ts";
 
 interface deleteTaskArgs {
     taskId: string;
-    timestamp: string | null;
+    timestamp: Nullable<string>;
 }
 
 export const deleteTask = createAsyncThunk<string, deleteTaskArgs>(

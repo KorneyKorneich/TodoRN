@@ -2,7 +2,7 @@ import styles from "./TodoAddWidget.styles.ts";
 import { TaskConfig } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { View } from "react-native";
 import { TodoInput } from "src/shared/ui/Inputs/TodoInput/TodoInput.tsx";
-import { InputType } from "src/shared/types/uiConst/uiConst.ts";
+import { InputType } from "src/shared/types/uiConst/const.ts";
 import { DateInput } from "src/shared/ui/Inputs/DateInput/DateInput.tsx";
 import { ImageInput } from "src/shared/ui/Inputs/ImageInput/ImageInput.tsx";
 

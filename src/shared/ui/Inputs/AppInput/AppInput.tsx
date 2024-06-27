@@ -1,8 +1,9 @@
 import styles from "./AppInput.styles.ts";
 import { TextInput, View } from "react-native";
+import { Nullable } from "src/shared/types/rootTypes/rootTypes.ts";
 
 interface EmailInputProps {
-    value: string | null;
+    value: Nullable<string>;
     setValue: (value: string) => void;
     placeholder?: string;
 }

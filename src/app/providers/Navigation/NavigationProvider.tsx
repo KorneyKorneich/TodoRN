@@ -19,12 +19,9 @@ export const NavigationProvider = () => {
 
     useEffect(() => {
         onAuthStateChanged(FIREBASE_AUTH, (u) => {
-            console.log("got user!", u);
             dispatch(setUser(u));
         });
     }, [user]);
-    console.log(user);
-
     return (
         <NavigationContainer>
             <Stack.Navigator
@@ -32,7 +29,7 @@ export const NavigationProvider = () => {
                     headerShown: false,
                 }}
             >
-                {user !== null ? (
+                {user ? (
                     <Stack.Group initialRouteName="Home">
                         <Stack.Screen name="Home" component={Home} />
                         <Stack.Screen name="TaskDetails" component={TaskDetails} />
@@ -40,10 +37,8 @@ export const NavigationProvider = () => {
                     </Stack.Group>
                 ) : (
                     <Stack.Group initialRouteName="SignUp">
-                        {/*<Stack.Screen name="Welcome" component={Welcome} />*/}
                         <Stack.Screen name="SignIn" component={SignIn} />
                         <Stack.Screen name="SignUp" component={SignUp} />
-                        {/*<Stack.Screen name="ChangePassword" component={ChangePassword} />*/}
                     </Stack.Group>
                 )}
             </Stack.Navigator>

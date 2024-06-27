@@ -9,6 +9,7 @@ import { AuthButton } from "src/shared/ui/Buttons/AuthButton/AuthButton.tsx";
 import { NavigationProps } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { createUser } from "src/shared/firebase/cloud/api/user/createUser/createUser.ts";
 import { getFirebaseAuthErrorMessage } from "src/shared/helpers/getAuthError.ts";
+import { EMAIL_REGEX } from "src/shared/consts/const.ts";
 
 interface ErrorConfig {
     password?: string;
@@ -51,8 +52,6 @@ export const SignUp = ({ navigation }: NavigationProps) => {
             repeatPassword: "Password confirmation is required",
         };
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         Object.keys(requiredFields).forEach((field) => {
             const key = field as keyof UserSignUpConfig;
             if (!userInfoSignUp[key]) {
@@ -66,7 +65,7 @@ export const SignUp = ({ navigation }: NavigationProps) => {
             newErrors.noErrors = false;
         }
 
-        if (userInfoSignUp.email && !emailRegex.test(userInfoSignUp.email)) {
+        if (userInfoSignUp.email && !EMAIL_REGEX.test(userInfoSignUp.email)) {
             newErrors.email = "Invalid email format";
             newErrors.noErrors = false;
         }

@@ -11,7 +11,7 @@ export default StyleSheet.create({
         width: "100%",
         borderWidth: 2,
         borderRadius: 12,
-        paddingVertical: Platform.OS === "ios" ? "3%" : null,
+        paddingVertical: Platform.OS === "ios" ? "3%" : 0,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
