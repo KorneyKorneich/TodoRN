@@ -1,9 +1,9 @@
 import "react-native-get-random-values";
 import axios from "axios";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { v4 as uuid_v4 } from "uuid";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "src/shared/firebase/cloud";
 
-export async function uploadImageAsync(uri: string) {
+export async function uploadImageAsync(timestamp: string, uri: string) {
     try {
         const response = await axios.get(uri, {
             responseType: "blob",
@@ -11,14 +11,17 @@ export async function uploadImageAsync(uri: string) {
 
         const blob = response.data;
 
-        const fileRef = ref(getStorage(), uuid_v4());
+        const fileRef = ref(storage, `Tasks/${timestamp}`);
         await uploadBytes(fileRef, blob);
 
         if (blob && typeof blob.close === "function") {
             blob.close();
         }
 
-        return await getDownloadURL(fileRef);
+        return {
+            downloadUrl: await getDownloadURL(fileRef),
+            filename: fileRef.name,
+        };
     } catch (error) {
         console.error("Error uploading image:", error);
         throw new Error("Network request failed");
