@@ -14,6 +14,7 @@
 		2EF0D7AC8647449E8A91D161 /* Montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82BD27FB9587493DB70F7E8D /* Montserrat.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		979B1D0B2C19A9B0003BA6B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 979B1D092C19A9B0003BA6B3 /* AppDelegate.m */; };
+		97CC2D202C2EF867009142A2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 97CC2D1F2C2EF866009142A2 /* Settings.bundle */; };
 		ACA4067382A5D4EF7A61327D /* libPods-TODO-TODOTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD73C098F359F362B68E7A63 /* libPods-TODO-TODOTests.a */; };
 		B23B46E9DB614F92AB48AE9C /* Bebas Neue Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A393A4CA0F445BC89543FD4 /* Bebas Neue Regular.ttf */; };
 		EF829DDF232BB3A141BD5EAB /* libPods-TODO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9143D9A1E0A1A633C2D0F69B /* libPods-TODO.a */; };
@@ -39,16 +40,17 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TODO/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TODO/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = TODO/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		3A393A4CA0F445BC89543FD4 /* Bebas Neue Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Bebas Neue Regular.ttf"; path = "../src/shared/assets/fonts/Bebas Neue Regular.ttf"; sourceTree = "<group>"; };
+		3A393A4CA0F445BC89543FD4 /* Bebas Neue Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Bebas Neue Regular.ttf"; path = "../src/shared/assets/fonts/Bebas Neue Regular.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-TODO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TODO.debug.xcconfig"; path = "Target Support Files/Pods-TODO/Pods-TODO.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-TODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TODO.release.xcconfig"; path = "Target Support Files/Pods-TODO/Pods-TODO.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-TODO-TODOTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TODO-TODOTests.debug.xcconfig"; path = "Target Support Files/Pods-TODO-TODOTests/Pods-TODO-TODOTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TODO/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		82BD27FB9587493DB70F7E8D /* Montserrat.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Montserrat.ttf; path = ../src/shared/assets/fonts/Montserrat.ttf; sourceTree = "<group>"; };
+		82BD27FB9587493DB70F7E8D /* Montserrat.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Montserrat.ttf; path = ../src/shared/assets/fonts/Montserrat.ttf; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-TODO-TODOTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TODO-TODOTests.release.xcconfig"; path = "Target Support Files/Pods-TODO-TODOTests/Pods-TODO-TODOTests.release.xcconfig"; sourceTree = "<group>"; };
 		9143D9A1E0A1A633C2D0F69B /* libPods-TODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		979B1D092C19A9B0003BA6B3 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = TODO/AppDelegate.m; sourceTree = "<group>"; };
 		979B1D0A2C19A9B0003BA6B3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = TODO/AppDelegate.h; sourceTree = "<group>"; };
+		97CC2D1F2C2EF866009142A2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		AD73C098F359F362B68E7A63 /* libPods-TODO-TODOTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TODO-TODOTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -134,6 +136,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				97CC2D1F2C2EF866009142A2 /* Settings.bundle */,
 				13B07FAE1A68108700A75B9A /* TODO */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TODOTests */,
@@ -266,6 +269,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				28DD14C3D311DDCA31051E0D /* PrivacyInfo.xcprivacy in Resources */,
 				B23B46E9DB614F92AB48AE9C /* Bebas Neue Regular.ttf in Resources */,
+				97CC2D202C2EF867009142A2 /* Settings.bundle in Resources */,
 				2EF0D7AC8647449E8A91D161 /* Montserrat.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,6 +509,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DTVAGZRUJ5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = TODO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -518,6 +523,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.TODONikita;
 				PRODUCT_NAME = TODO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -532,6 +538,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DTVAGZRUJ5;
 				INFOPLIST_FILE = TODO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -544,6 +551,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.TODONikita;
 				PRODUCT_NAME = TODO;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -635,10 +643,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -722,10 +727,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

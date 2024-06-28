@@ -92,10 +92,9 @@ export const SignUp = ({ navigation }: NavigationProps) => {
                     password: userInfoSignUp.password!,
                 });
             } catch (err) {
-                console.error("Error signing up:", err);
                 setErrors((prevErrors) => ({
                     ...prevErrors,
-                    firebaseError: "An error occurred while signing up.",
+                    firebaseError: "",
                 }));
             }
         }
