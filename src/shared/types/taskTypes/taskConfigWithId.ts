@@ -1,10 +1,11 @@
 import { DocumentData } from "firebase/firestore";
+import { Nullable } from "src/shared/types/rootTypes/rootTypes.ts";
 
 export interface TaskConfig {
-    title: string | null;
-    description: string | null;
-    deadline: number | null;
-    img: TodoImgConfig;
+    title: string;
+    description: string;
+    deadline: Nullable<number>;
+    img: Nullable<string>;
     timeStamp: number;
     userId: string | null;
     done: boolean;
@@ -21,9 +22,4 @@ export interface TaskProps {
 export interface dbGetTasksResponse {
     data: DocumentData;
     id: string;
-}
-
-export interface TodoImgConfig {
-    downloadURL: string | null;
-    filename: string | null;
 }

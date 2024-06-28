@@ -16,12 +16,9 @@ import { getIsTasksLoading } from "src/shared/slices/TodoSlice/selectors/getIsTa
 import { useSelector } from "react-redux";
 
 const taskToAddInitialState: TaskConfig = {
-    description: null,
-    title: null,
-    img: {
-        downloadURL: null,
-        filename: null,
-    },
+    description: "",
+    title: "",
+    img: null,
     deadline: null,
     timeStamp: 0,
     userId: null,

@@ -27,5 +27,3 @@ export const OVERDRAG = 20;
 
 export const WIDTH = Dimensions.get("window").width;
 export const HEIGHT = Dimensions.get("window").height;
-// export const APP_HEADER_HEIGHT = (HEIGHT - (HEIGHT - 20));
-// export const ARTICLE_HEADER_HEIGHT = ;

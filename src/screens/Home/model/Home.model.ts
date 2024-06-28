@@ -8,16 +8,11 @@ export const handleTodoAdd = (
     setTaskToAdd: (task: TaskConfig) => void,
     dispatch: AppDispatch,
 ) => {
-    taskToAdd.img.filename !== null
-        ? addTaskWithImage(taskToAdd, dispatch)
-        : dispatch(addTaskToDB(taskToAdd));
+    addTaskWithImage(taskToAdd, dispatch);
     setTaskToAdd({
-        description: null,
-        title: null,
-        img: {
-            downloadURL: null,
-            filename: null,
-        },
+        description: "",
+        title: "",
+        img: null,
         deadline: null,
         timeStamp: 0,
         userId: null,

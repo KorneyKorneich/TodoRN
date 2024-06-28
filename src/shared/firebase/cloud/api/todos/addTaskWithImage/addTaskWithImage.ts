@@ -8,17 +8,8 @@ export const addTaskWithImage = async (
     dispatch: AppDispatch,
 ): Promise<TaskConfigWithId> => {
     try {
-        const uploadResult = await uploadImageAsync(
-            task.timeStamp.toString(),
-            task.img.downloadURL ?? "",
-        );
-        const taskWithImage = {
-            ...task,
-            img: {
-                downloadURL: uploadResult.downloadUrl,
-                filename: uploadResult.filename,
-            },
-        };
+        const uploadResult = task.img && (await uploadImageAsync(task.img));
+        const taskWithImage = { ...task, img: uploadResult };
         return await dispatch(addTaskToDB(taskWithImage)).unwrap();
     } catch (error) {
         throw new Error("Failed to add task with image");
