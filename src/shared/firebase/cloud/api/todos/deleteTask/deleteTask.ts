@@ -12,7 +12,6 @@ interface deleteTaskArgs {
 export const deleteTask = createAsyncThunk<string, deleteTaskArgs>(
     "tasks/deleteTask",
     async ({ taskId, timestamp }: deleteTaskArgs) => {
-        // if
         const docRef = doc(db, "Tasks", taskId);
         if (timestamp) {
             const desertRef = ref(storage, `Tasks/${timestamp}`);
