@@ -1,9 +1,8 @@
 import styles from "./AppInput.styles.ts";
 import { TextInput, View } from "react-native";
-import { Nullable } from "src/shared/types/rootTypes/rootTypes.ts";
 
 interface EmailInputProps {
-    value: Nullable<string>;
+    value: string;
     setValue: (value: string) => void;
     placeholder?: string;
 }
@@ -20,7 +19,7 @@ export const AppInput = (props: EmailInputProps) => {
                 <TextInput
                     placeholder={placeholder}
                     style={styles.input}
-                    value={value ?? ""}
+                    value={value}
                     autoCapitalize="none"
                     onChangeText={handleInputChange}
                 />

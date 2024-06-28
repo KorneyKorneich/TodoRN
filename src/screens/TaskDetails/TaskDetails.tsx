@@ -31,7 +31,7 @@ export const TaskDetails = ({ route, navigation }: NavigationProps) => {
             description: "",
             timeStamp: 0,
             deadline: 0,
-            userId: null
+            userId: null,
         },
     };
     const [taskToEdit, setTaskToEdit] = useState<TaskConfigWithId>(taskData ?? initialTaskData);
@@ -44,7 +44,12 @@ export const TaskDetails = ({ route, navigation }: NavigationProps) => {
     const timeStamp = new Date(taskData.data.timeStamp);
 
     const handleOnDelete = () => {
-        dispatch(deleteTask(taskData.id));
+        dispatch(
+            deleteTask({
+                taskId: taskToEdit.id,
+                timestamp: taskData.data.timeStamp.toString(),
+            }),
+        );
         navigation.goBack();
     };
 

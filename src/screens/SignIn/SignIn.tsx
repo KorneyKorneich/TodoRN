@@ -4,11 +4,12 @@ import Union from "src/shared/assets/icons/Union.svg";
 import { PasswordInput } from "src/shared/ui/Inputs/PasswordInput/PasswordInput.tsx";
 import { useState } from "react";
 import { AppInput } from "src/shared/ui/Inputs/AppInput/AppInput.tsx";
-import { UserSignInConfig } from "src/shared/types/user/userConfig.ts";
+import { UserResponse, UserSignInConfig } from "src/shared/types/user/userConfig.ts";
 import { AuthButton } from "src/shared/ui/Buttons/AuthButton/AuthButton.tsx";
 import { NavigationProps } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { signIn } from "src/shared/firebase/cloud/api/user/signIn/signIn.ts";
 import { EMAIL_REGEX } from "src/shared/consts/const.ts";
+import { validateEmail, validatePassword } from "src/shared/helpers/validates.ts";
 
 interface ErrorConfig {
     password?: string;
@@ -35,26 +36,15 @@ export const SignIn = ({ navigation }: NavigationProps) => {
     const validate = (): boolean => {
         const newErrors: ErrorConfig = { noErrors: true };
 
-        const requiredFields: Partial<Record<keyof UserSignInConfig, string>> = {
-            email: "Email is required",
-            password: "Password is required",
-        };
-
-        Object.keys(requiredFields).forEach((field) => {
-            const key = field as keyof UserSignInConfig;
-            if (!userInfo[key]) {
-                newErrors[key] = requiredFields[key]!;
-                newErrors.noErrors = false;
-            }
-        });
-
-        if (userInfo.password && userInfo.password.length < 6) {
-            newErrors.password = "Password must be at least 6 characters long";
+        const emailError = validateEmail(userInfo.email);
+        if (emailError) {
+            newErrors.email = emailError;
             newErrors.noErrors = false;
         }
 
-        if (userInfo.email && !EMAIL_REGEX.test(userInfo.email)) {
-            newErrors.email = "Invalid email format";
+        const passwordError = validatePassword(userInfo.password);
+        if (passwordError) {
+            newErrors.password = passwordError;
             newErrors.noErrors = false;
         }
 
@@ -65,13 +55,13 @@ export const SignIn = ({ navigation }: NavigationProps) => {
     const handleSignIn = async () => {
         const isValid = validate();
         if (isValid) {
-            const errorMessage = await signIn({
+            const errorMessage: UserResponse = await signIn({
                 email: userInfo.email!,
                 password: userInfo.password!,
             });
 
-            if (errorMessage) {
-                setErrors((prevErrors) => ({ ...prevErrors, firebaseError: errorMessage }));
+            if (errorMessage.error) {
+                setErrors((prevErrors) => ({ ...prevErrors, firebaseError: errorMessage.error }));
             }
         }
     };

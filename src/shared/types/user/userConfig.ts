@@ -13,5 +13,10 @@ export interface UserSignUpConfig {
 
 export interface UserConfig {
     email: string;
-    username: string;
+    userId: string;
+}
+
+export interface UserResponse {
+    userData: Nullable<UserConfig>;
+    error: Nullable<string>;
 }

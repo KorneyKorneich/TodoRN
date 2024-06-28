@@ -11,7 +11,7 @@ export const AuthButton = (props: AuthButtonProps) => {
     return (
         <>
             <TouchableOpacity onPress={onPress} style={styles.button}>
-                <Text style={styles.buttonTitle}>{buttonTitle?.toUpperCase()}</Text>
+                <Text style={styles.buttonTitle}>{buttonTitle.toUpperCase()}</Text>
             </TouchableOpacity>
         </>
     );

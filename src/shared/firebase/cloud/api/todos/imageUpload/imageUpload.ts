@@ -18,12 +18,8 @@ export async function uploadImageAsync(timestamp: string, uri: string) {
             blob.close();
         }
 
-        return {
-            downloadUrl: await getDownloadURL(fileRef),
-            filename: fileRef.name,
-        };
+        return await getDownloadURL(fileRef);
     } catch (error) {
-        console.error("Error uploading image:", error);
         throw new Error("Network request failed");
     }
 }
