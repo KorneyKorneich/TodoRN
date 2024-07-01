@@ -9,14 +9,12 @@ import { AuthButton } from "src/shared/ui/Buttons/AuthButton/AuthButton.tsx";
 import { NavigationProps } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { signIn } from "src/shared/firebase/cloud/api/user/signIn/signIn.ts";
 import { EMAIL_REGEX } from "src/shared/consts/const.ts";
-import { validateEmail, validatePassword } from "src/shared/helpers/validates.ts";
-
-interface ErrorConfig {
-    password?: string;
-    email?: string;
-    noErrors: boolean;
-    firebaseError?: string;
-}
+import {
+    ErrorConfig,
+    validateEmail,
+    validatePassword,
+    validateSignIn,
+} from "src/shared/helpers/validates.ts";
 
 export const SignIn = ({ navigation }: NavigationProps) => {
     const [userInfo, setUserInfo] = useState<UserSignInConfig>({
@@ -33,28 +31,9 @@ export const SignIn = ({ navigation }: NavigationProps) => {
         setUserInfo({ ...userInfo, password: password });
     };
 
-    const validate = (): boolean => {
-        const newErrors: ErrorConfig = { noErrors: true };
-
-        const emailError = validateEmail(userInfo.email);
-        if (emailError) {
-            newErrors.email = emailError;
-            newErrors.noErrors = false;
-        }
-
-        const passwordError = validatePassword(userInfo.password);
-        if (passwordError) {
-            newErrors.password = passwordError;
-            newErrors.noErrors = false;
-        }
-
-        setErrors(newErrors);
-        return newErrors.noErrors;
-    };
-
     const handleSignIn = async () => {
-        const isValid = validate();
-        if (isValid) {
+        const errors = validateSignIn(userInfo);
+        if (errors.noErrors) {
             const errorMessage: UserResponse = await signIn({
                 email: userInfo.email!,
                 password: userInfo.password!,

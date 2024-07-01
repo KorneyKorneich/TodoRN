@@ -8,24 +8,13 @@ import { AuthButton } from "src/shared/ui/Buttons/AuthButton/AuthButton.tsx";
 import { NavigationProps } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { createUser } from "src/shared/firebase/cloud/api/user/createUser/createUser.ts";
 import { getFirebaseAuthErrorMessage } from "src/shared/helpers/getAuthError.ts";
-import {
-    validateEmail,
-    validatePassword,
-    validatePasswordConfirmation,
-} from "src/shared/helpers/validates.ts";
+import { ErrorConfig, validateSignUp } from "src/shared/helpers/validates.ts";
 import { UserResponse } from "src/shared/types/user/userConfig.ts";
 
-interface UserSignUpConfig {
+export interface UserSignUpConfig {
     email: string | null;
     password: string | null;
     repeatPassword: string | null;
-}
-
-interface ErrorConfig {
-    password?: string;
-    email?: string;
-    repeatPassword?: string;
-    firebaseError?: string;
 }
 
 export const SignUp = ({ navigation }: NavigationProps) => {
@@ -59,34 +48,9 @@ export const SignUp = ({ navigation }: NavigationProps) => {
         setUserInfoSignUp((prevInfo) => ({ ...prevInfo, repeatPassword: password }));
     };
 
-    const validate = (): boolean => {
-        const newErrors: ErrorConfig = {};
-
-        const emailError = validateEmail(userInfoSignUp.email || "");
-        if (emailError) {
-            newErrors.email = emailError;
-        }
-
-        const passwordError = validatePassword(userInfoSignUp.password || "");
-        if (passwordError) {
-            newErrors.password = passwordError;
-        }
-
-        const passwordConfirmationError = validatePasswordConfirmation(
-            userInfoSignUp.password || "",
-            userInfoSignUp.repeatPassword || "",
-        );
-        if (passwordConfirmationError) {
-            newErrors.repeatPassword = passwordConfirmationError;
-        }
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
     const handleSignUp = async () => {
-        const isValid = validate();
-        if (isValid) {
+        const errors = validateSignUp(userInfoSignUp);
+        if (errors.noErrors) {
             const response: UserResponse = await createUser({
                 email: userInfoSignUp.email!,
                 password: userInfoSignUp.password!,

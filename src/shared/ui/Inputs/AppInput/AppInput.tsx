@@ -14,16 +14,14 @@ export const AppInput = (props: EmailInputProps) => {
         setValue(value);
     };
     return (
-        <>
-            <View style={styles.inputContainer}>
-                <TextInput
-                    placeholder={placeholder}
-                    style={styles.input}
-                    value={value}
-                    autoCapitalize="none"
-                    onChangeText={handleInputChange}
-                />
-            </View>
-        </>
+        <View style={styles.inputContainer}>
+            <TextInput
+                placeholder={placeholder}
+                style={styles.input}
+                value={value}
+                autoCapitalize="none"
+                onChangeText={handleInputChange}
+            />
+        </View>
     );
 };

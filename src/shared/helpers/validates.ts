@@ -1,5 +1,58 @@
 import { EMAIL_REGEX } from "src/shared/consts/const.ts";
 import { Nullable } from "src/shared/types/rootTypes/rootTypes.ts";
+import { UserSignInConfig } from "src/shared/types/user/userConfig.ts";
+import { UserSignUpConfig } from "src/screens/SignUp/SignUp.tsx";
+
+export interface ErrorConfig {
+    password?: string;
+    email?: string;
+    repeatPassword?: string;
+    firebaseError?: string;
+    noErrors?: boolean;
+}
+
+export const validateSignUp = (userInfoSignUp: UserSignUpConfig) => {
+    const newErrors: ErrorConfig = {};
+
+    const emailError = validateEmail(userInfoSignUp.email || "");
+    if (emailError) {
+        newErrors.email = emailError;
+    }
+
+    const passwordError = validatePassword(userInfoSignUp.password || "");
+    if (passwordError) {
+        newErrors.password = passwordError;
+    }
+
+    const passwordConfirmationError = validatePasswordConfirmation(
+        userInfoSignUp.password || "",
+        userInfoSignUp.repeatPassword || "",
+    );
+    if (passwordConfirmationError) {
+        newErrors.repeatPassword = passwordConfirmationError;
+    }
+    if (Object.keys(newErrors).length === 0) newErrors.noErrors = true;
+    return newErrors;
+    // return Object.keys(newErrors).length === 0;
+};
+
+export const validateSignIn = (userInfo: UserSignInConfig) => {
+    const newErrors: ErrorConfig = { noErrors: true };
+
+    const emailError = validateEmail(userInfo.email);
+    if (emailError) {
+        newErrors.email = emailError;
+        newErrors.noErrors = false;
+    }
+
+    const passwordError = validatePassword(userInfo.password);
+    if (passwordError) {
+        newErrors.password = passwordError;
+        newErrors.noErrors = false;
+    }
+
+    return newErrors;
+};
 
 export const validateEmail = (email: Nullable<string>): string | null => {
     if (email === null) {
