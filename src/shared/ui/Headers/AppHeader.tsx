@@ -7,7 +7,7 @@ import { useAppNavigation } from "src/shared/types/rootTypes/rootTypes.ts";
 
 interface HeaderProps {
     text?: string;
-    buttons: ReactNode[];
+    buttons?: ReactNode[];
     screen: Screens;
 }
 

@@ -1,8 +1,8 @@
 import styles from "./TodoInput.styles.ts";
 import { TextInput, View } from "react-native";
 import { ColorGuide } from "src/shared/types/styles/styleConstants.ts";
-import { InputType } from "src/shared/types/uiConst/uiConst.ts";
 import React from "react";
+import { InputType } from "src/shared/consts/const.ts";
 
 interface TodoTitleInputProps {
     value: string;

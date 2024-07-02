@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { TaskConfigWithId } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { db, ref, storage } from "src/shared/firebase/cloud";
 import { doc, updateDoc } from "firebase/firestore";
-import { swapFiles } from "src/shared/firebase/cloud/api/swapFiles/swapFiles.ts";
+import { swapFiles } from "src/shared/firebase/cloud/api/todos/swapFiles/swapFiles.ts";
 
 export const editTask = createAsyncThunk<TaskConfigWithId, TaskConfigWithId>(
     "tasks/editTask",

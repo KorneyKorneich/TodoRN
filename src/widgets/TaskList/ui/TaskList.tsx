@@ -5,7 +5,7 @@ import { getState } from "src/shared/slices/TodoSlice/selectors/getState.ts";
 import styles from "./TaskList.styles.ts";
 import { Task } from "src/entities/Task";
 import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
-import { getTasksList } from "src/shared/firebase/cloud/api/getTaskList/getTasksList.ts";
+import { getTasksList } from "src/shared/firebase/cloud/api/todos/getTaskList/getTasksList.ts";
 import { ArticleBar } from "src/shared/ui/ArticleTitle/ArticleTitle.tsx";
 
 export const TaskList = () => {
