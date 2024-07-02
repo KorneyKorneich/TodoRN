@@ -22,11 +22,9 @@ export const NavigationProvider = () => {
     const checkOnboarding = async () => {
         try {
             const value = await AsyncStorage.getItem("@viewedOnboarding");
-            if (value !== null) {
+            if (value) {
                 setViewOnboarding(true);
             }
-        } catch (err) {
-            console.error(err);
         } finally {
             setIsLoading(false);
         }

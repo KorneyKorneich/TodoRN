@@ -1,9 +1,5 @@
 import { StyleSheet } from "react-native";
-import {
-    BodyFontSizes,
-    ColorGuide,
-    HeadlineSizes,
-} from "src/shared/types/styles/styleConstants.ts";
+import { BodyFontSizes, ColorGuide } from "src/shared/types/styles/styleConstants.ts";
 
 export default StyleSheet.create({
     logo: {
@@ -17,7 +13,6 @@ export default StyleSheet.create({
         justifyContent: "space-between",
         flexDirection: "column",
     },
-    userInfo: {},
     textContainer: {
         justifyContent: "space-between",
         display: "flex",

@@ -26,12 +26,8 @@ export const OnboardingComponent = ({ navigation }: NavigationProps) => {
         if (currentIndex < slides.length - 1) {
             slidesRef.current?.scrollToIndex({ index: currentIndex + 1 });
         } else {
-            try {
-                await AsyncStorage.setItem("@viewedOnboarding", "true");
-                navigation.navigate("SignIn");
-            } catch (err) {
-                console.error(err);
-            }
+            await AsyncStorage.setItem("@viewedOnboarding", "true");
+            navigation.navigate("SignIn");
         }
     };
 

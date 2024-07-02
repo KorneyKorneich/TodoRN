@@ -6,8 +6,8 @@ import { ReactNode, useCallback } from "react";
 import { ColorGuide } from "src/shared/types/styles/styleConstants.ts";
 
 interface HeaderProps {
-    text?: string;
-    buttons: ReactNode[];
+    text: string;
+    buttons?: ReactNode[];
     screen: Screens;
 }
 

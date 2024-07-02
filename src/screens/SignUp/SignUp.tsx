@@ -71,17 +71,11 @@ export const SignUp = ({ navigation }: NavigationProps) => {
             newErrors.noErrors = false;
         }
 
-        if (
-            userInfoSignUp.password &&
-            userInfoSignUp.repeatPassword &&
-            userInfoSignUp.password !== userInfoSignUp.repeatPassword
-        ) {
-            newErrors.passwordsNotMatch = "Passwords do not match";
-            newErrors.noErrors = false;
+        const { password, repeatPassword } = userInfoSignUp;
+        if (password && repeatPassword && password !== repeatPassword) {
+            setErrors(newErrors);
+            return newErrors.noErrors;
         }
-
-        setErrors(newErrors);
-        return newErrors.noErrors;
     };
 
     const handleSignUp = async () => {

@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 import {
     BodyFontSizes,
     ColorGuide,
-    HeadlineSizes,
     HEIGHT,
     WIDTH,
 } from "src/shared/types/styles/styleConstants.ts";
@@ -27,7 +26,7 @@ export default StyleSheet.create({
     text: {
         marginVertical: 5,
         fontFamily: "Montserrat",
-        color: "#A4A4A4",
+        color: ColorGuide.DARK_GREY,
         fontStyle: "italic",
         fontSize: BodyFontSizes.BODY_2,
         textAlign: "right",
