@@ -10,18 +10,19 @@ import { createUser } from "src/shared/firebase/cloud/api/user/createUser/create
 import { getFirebaseAuthErrorMessage } from "src/shared/helpers/getAuthError.ts";
 import { ErrorConfig, validateSignUp } from "src/shared/helpers/validates.ts";
 import { UserResponse } from "src/shared/types/user/userConfig.ts";
+import { Nullable } from "src/shared/types/rootTypes/rootTypes.ts";
 
 export interface UserSignUpConfig {
-    email: string | null;
-    password: string | null;
-    repeatPassword: string | null;
+    email: Nullable<string>;
+    password: Nullable<string>;
+    repeatPassword: Nullable<string>;
 }
 
 export const SignUp = ({ navigation }: NavigationProps) => {
     const [userInfoSignUp, setUserInfoSignUp] = useState<UserSignUpConfig>({
-        email: "",
-        password: "",
-        repeatPassword: "",
+        email: null,
+        password: null,
+        repeatPassword: null,
     });
     const [errors, setErrors] = useState<ErrorConfig>({});
 

@@ -8,13 +8,7 @@ import { UserResponse, UserSignInConfig } from "src/shared/types/user/userConfig
 import { AuthButton } from "src/shared/ui/Buttons/AuthButton/AuthButton.tsx";
 import { NavigationProps } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { signIn } from "src/shared/firebase/cloud/api/user/signIn/signIn.ts";
-import { EMAIL_REGEX } from "src/shared/consts/const.ts";
-import {
-    ErrorConfig,
-    validateEmail,
-    validatePassword,
-    validateSignIn,
-} from "src/shared/helpers/validates.ts";
+import { ErrorConfig, validateSignIn } from "src/shared/helpers/validates.ts";
 
 export const SignIn = ({ navigation }: NavigationProps) => {
     const [userInfo, setUserInfo] = useState<UserSignInConfig>({
