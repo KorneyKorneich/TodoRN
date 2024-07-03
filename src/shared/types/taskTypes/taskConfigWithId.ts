@@ -7,6 +7,8 @@ export interface TaskConfig {
     deadline: Nullable<number>;
     img: Nullable<string>;
     timeStamp: number;
+    userId: string | null;
+    done: boolean;
 }
 export interface TaskConfigWithId {
     id: string;

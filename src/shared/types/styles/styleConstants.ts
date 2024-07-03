@@ -19,7 +19,7 @@ export enum ColorGuide {
     ACCENT_COLOR = "#F76C6A",
     BLACK = "#272727",
     GREY = "#E4E4E4",
-    WHITE = "#FFFFFF",
+    WHITE = "#ffffff",
     BACKDROP_COLOR = "rgba(0, 0, 0, 0.3)",
 }
 

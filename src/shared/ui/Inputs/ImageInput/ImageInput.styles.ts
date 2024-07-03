@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import {
     BodyFontSizes,
     ColorGuide,
@@ -11,9 +11,10 @@ export default StyleSheet.create({
         width: "100%",
         borderWidth: 2,
         borderRadius: 12,
-        paddingVertical: "3%",
+        paddingVertical: Platform.OS === "ios" ? "3%" : null,
         flexDirection: "row",
         justifyContent: "space-between",
+        alignItems: "center",
         paddingHorizontal: "2%",
     },
     emptyInput: {

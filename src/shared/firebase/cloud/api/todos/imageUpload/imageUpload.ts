@@ -23,7 +23,6 @@ export async function uploadImageAsync(timestamp: string, uri: string) {
             filename: fileRef.name,
         };
     } catch (error) {
-        console.error("Error uploading image:", error);
         throw new Error("Network request failed");
     }
 }

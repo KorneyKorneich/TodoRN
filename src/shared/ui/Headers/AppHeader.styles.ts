@@ -3,6 +3,9 @@ import { ColorGuide, HeadlineSizes } from "src/shared/types/styles/styleConstant
 
 export default StyleSheet.create({
     headerContainer: {
+        backgroundColor: ColorGuide.WHITE,
+    },
+    content: {
         position: "static",
         marginVertical: 10,
         marginHorizontal: "5%",
@@ -12,7 +15,7 @@ export default StyleSheet.create({
     },
     headerTitle: {
         fontSize: HeadlineSizes.HEADLINE_4,
-        fontWeight: "bold",
+        fontWeight: "600",
         color: ColorGuide.PRIMARY_COLOR,
         fontFamily: "Bebas Neue Regular",
     },

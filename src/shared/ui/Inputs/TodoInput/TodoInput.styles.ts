@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { BodyFontSizes, ColorGuide, HEIGHT } from "src/shared/types/styles/styleConstants.ts";
+import { Platform, StyleSheet } from "react-native";
+import { BodyFontSizes, ColorGuide } from "src/shared/types/styles/styleConstants.ts";
 
 export default StyleSheet.create({
     container: {
@@ -7,7 +7,7 @@ export default StyleSheet.create({
         borderWidth: 2,
         borderColor: ColorGuide.WHITE,
         borderRadius: 12,
-        paddingVertical: "3%",
+        paddingVertical: Platform.OS === "ios" ? "3%" : null,
     },
     default: {
         fontFamily: "Montserrat",
@@ -16,7 +16,7 @@ export default StyleSheet.create({
         fontSize: BodyFontSizes.BODY_1,
     },
     description: {
-        height: HEIGHT * 0.4,
+        height: "60%",
     },
     title: {},
 });
