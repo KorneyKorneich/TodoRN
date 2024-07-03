@@ -7,6 +7,15 @@ export const store = configureStore({
         tasks: tasksReducer,
         user: userReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: ["*"],
+                ignoredActionPaths: ["payload"],
+                ignoredPaths: ["tasks", "user"],
+                warnAfter: Infinity,
+            },
+        }),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

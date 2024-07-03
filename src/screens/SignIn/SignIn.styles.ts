@@ -46,4 +46,8 @@ export default StyleSheet.create({
         width: "90%",
         marginHorizontal: "auto",
     },
+    loader: {
+        marginHorizontal: "auto",
+        marginVertical: "auto",
+    },
 });

@@ -20,23 +20,17 @@ export const NavigationProvider = () => {
     const dispatch = useAppDispatch();
     const [viewedOnboarding, setViewOnboarding] = useState(false);
     const checkOnboarding = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@viewedOnboarding");
-            if (value !== null) {
-                setViewOnboarding(true);
-            }
-        } catch (err) {
-            throw err;
-        } finally {
-            setIsUserLoading(false);
+        const value = await AsyncStorage.getItem("@viewedOnboarding");
+        if (value !== null) {
+            setViewOnboarding(true);
         }
     };
 
     useEffect(() => {
-        setIsUserLoading(true);
+        dispatch(setIsUserLoading(true));
         onAuthStateChanged(FIREBASE_AUTH, (u) => {
             dispatch(setUser(u));
-            setIsUserLoading(false);
+            dispatch(setIsUserLoading(false));
         });
     }, [user]);
 
@@ -62,10 +56,8 @@ export const NavigationProvider = () => {
                             {!viewedOnboarding ? (
                                 <Stack.Screen name={"Onboarding"} component={OnboardingComponent} />
                             ) : null}
-                            {/*<Stack.Screen name="Welcome" component={Welcome} />*/}
                             <Stack.Screen name="SignUp" component={SignUp} />
                             <Stack.Screen name="SignIn" component={SignIn} />
-                            {/*<Stack.Screen name="ChangePassword" component={ChangePassword} />*/}
                         </Stack.Group>
                     </>
                 )}

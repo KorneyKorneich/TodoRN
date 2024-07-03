@@ -1,4 +1,10 @@
-import { KeyboardAvoidingView, Text, TouchableOpacity, View } from "react-native";
+import {
+    ActivityIndicator,
+    KeyboardAvoidingView,
+    Text,
+    TouchableOpacity,
+    View,
+} from "react-native";
 import styles from "./SignUp.styles.ts";
 import Union from "src/shared/assets/icons/Union.svg";
 import { PasswordInput } from "src/shared/ui/Inputs/PasswordInput/PasswordInput.tsx";
@@ -8,6 +14,10 @@ import { UserSignUpConfig } from "src/shared/types/user/userConfig.ts";
 import { AuthButton } from "src/shared/ui/Buttons/AuthButton/AuthButton.tsx";
 import { NavigationProps } from "src/shared/types/navigationTypes/navigationTypes.ts";
 import { createUser } from "src/shared/firebase/cloud/api/user/createUser/createUser.ts";
+import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
+import { useSelector } from "react-redux";
+import { getIsUserLoading } from "src/shared/slices/UserSlice/selectors/getIsUserLoading.ts";
+import { ColorGuide } from "src/shared/types/styles/styleConstants.ts";
 
 interface ErrorConfig {
     password?: string;
@@ -26,6 +36,8 @@ export const SignUp = ({ navigation }: NavigationProps) => {
         repeatPassword: null,
     });
     const [errors, setErrors] = useState<ErrorConfig>({ noErrors: false });
+    const dispatch = useAppDispatch();
+    const isUserLoading = useSelector(getIsUserLoading);
 
     const handleEmailChange = (email: string) => {
         setErrors({ ...errors, email: undefined, firebaseError: undefined });
@@ -87,7 +99,7 @@ export const SignUp = ({ navigation }: NavigationProps) => {
         const isValid = validate();
         if (isValid) {
             try {
-                const errorMessage = await createUser({
+                const errorMessage = await createUser(dispatch, {
                     email: userInfoSignUp.email!,
                     password: userInfoSignUp.password!,
                 });
@@ -108,46 +120,60 @@ export const SignUp = ({ navigation }: NavigationProps) => {
         <KeyboardAvoidingView behavior="position">
             <View style={styles.container}>
                 <View style={styles.content}>
-                    <View style={styles.logo}>
-                        <Union />
-                    </View>
-                    <View style={styles.signUpForm}>
-                        <AppInput
-                            placeholder="Email"
-                            value={userInfoSignUp.email}
-                            setValue={handleEmailChange}
+                    {isUserLoading ? (
+                        <ActivityIndicator
+                            size={"large"}
+                            color={ColorGuide.PRIMARY_COLOR}
+                            style={styles.loader}
                         />
-                        {errors.email && <Text style={styles.invalidInput}>{errors.email}</Text>}
-                        <PasswordInput
-                            placeholder="Password"
-                            value={userInfoSignUp.password}
-                            setValue={handlePasswordChange}
-                        />
-                        {errors.password && (
-                            <Text style={styles.invalidInput}>{errors.password}</Text>
-                        )}
-                        <PasswordInput
-                            placeholder="Confirm Password"
-                            value={userInfoSignUp.repeatPassword}
-                            setValue={handlePasswordConfirmChange}
-                        />
-                        {errors.repeatPassword && (
-                            <Text style={styles.invalidInput}>{errors.repeatPassword}</Text>
-                        )}
-                        {errors.passwordsNotMatch && (
-                            <Text style={styles.invalidInput}>{errors.passwordsNotMatch}</Text>
-                        )}
-                        {errors.firebaseError && (
-                            <Text style={styles.invalidInput}>{errors.firebaseError}</Text>
-                        )}
-                    </View>
-                    <AuthButton onPress={handleSignUp} buttonTitle="SIGN UP" />
-                    <View style={styles.toSignInContainer}>
-                        <Text style={styles.text}>Already have an account?</Text>
-                        <TouchableOpacity onPress={handleToSignIn}>
-                            <Text style={styles.toSignUp}>Sign In</Text>
-                        </TouchableOpacity>
-                    </View>
+                    ) : (
+                        <>
+                            <View style={styles.logo}>
+                                <Union />
+                            </View>
+                            <View style={styles.signUpForm}>
+                                <AppInput
+                                    placeholder="Email"
+                                    value={userInfoSignUp.email}
+                                    setValue={handleEmailChange}
+                                />
+                                {errors.email && (
+                                    <Text style={styles.invalidInput}>{errors.email}</Text>
+                                )}
+                                <PasswordInput
+                                    placeholder="Password"
+                                    value={userInfoSignUp.password}
+                                    setValue={handlePasswordChange}
+                                />
+                                {errors.password && (
+                                    <Text style={styles.invalidInput}>{errors.password}</Text>
+                                )}
+                                <PasswordInput
+                                    placeholder="Confirm Password"
+                                    value={userInfoSignUp.repeatPassword}
+                                    setValue={handlePasswordConfirmChange}
+                                />
+                                {errors.repeatPassword && (
+                                    <Text style={styles.invalidInput}>{errors.repeatPassword}</Text>
+                                )}
+                                {errors.passwordsNotMatch && (
+                                    <Text style={styles.invalidInput}>
+                                        {errors.passwordsNotMatch}
+                                    </Text>
+                                )}
+                                {errors.firebaseError && (
+                                    <Text style={styles.invalidInput}>{errors.firebaseError}</Text>
+                                )}
+                            </View>
+                            <AuthButton onPress={handleSignUp} buttonTitle="SIGN UP" />
+                            <View style={styles.toSignInContainer}>
+                                <Text style={styles.text}>Already have an account?</Text>
+                                <TouchableOpacity onPress={handleToSignIn}>
+                                    <Text style={styles.toSignUp}>Sign In</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </>
+                    )}
                 </View>
             </View>
         </KeyboardAvoidingView>

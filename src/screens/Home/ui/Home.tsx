@@ -12,8 +12,6 @@ import { TaskConfig } from "src/shared/types/taskTypes/taskConfigWithId.ts";
 import { useAppDispatch } from "src/shared/hooks/reduxHooks.ts";
 import { TouchableOpacity, View } from "react-native";
 import { FIREBASE_AUTH } from "src/shared/firebase/cloud";
-import { getIsTasksLoading } from "src/shared/slices/TodoSlice/selectors/getIsTasksLoading.ts";
-import { useSelector } from "react-redux";
 
 const taskToAddInitialState: TaskConfig = {
     description: "",
@@ -40,8 +38,6 @@ export const Home = ({ navigation }: NavigationProps) => {
         handleTodoAdd(updatedTask, setTaskToAdd, dispatch);
         toggleModal();
     };
-
-    const isLoading = useSelector(getIsTasksLoading);
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);

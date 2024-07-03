@@ -14,9 +14,9 @@ import { getIsTasksLoading } from "src/shared/slices/TodoSlice/selectors/getIsTa
 
 export const TaskList = () => {
     const [filterVisible, setFilterVisible] = useState<boolean>(false);
-    const [filter, setFilter] = useState<string>("all"); // Add filter state
+    const [filter, setFilter] = useState<string>("all");
     const tasks = useSelector(getTasks);
-    const isLoading = useAppSelector(getIsTasksLoading); // Loading state
+    const isLoading = useAppSelector(getIsTasksLoading);
 
     const dispatch = useAppDispatch();
 
@@ -70,7 +70,11 @@ export const TaskList = () => {
             />
             {filterVisible && <Dropdown filter={filter} handleFilterSelect={handleFilterSelect} />}
             {isLoading ? (
-                <ActivityIndicator size="large" style={styles.loader} />
+                <ActivityIndicator
+                    size="large"
+                    color={ColorGuide.PRIMARY_COLOR}
+                    style={styles.loader}
+                />
             ) : sortedTaskList.length === 0 ? (
                 <View style={styles.emptyContainer}>
                     <Text style={styles.emptyTextTitle}>There are no todos here.</Text>
